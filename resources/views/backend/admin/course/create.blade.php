@@ -782,8 +782,19 @@
                 let is_discountable = $(this).is(':checked');
                 if (is_discountable) {
                     $('.discountable_div').removeClass('d-none');
-                } else {
-                    $('.discountable_div').addClass('d-none');
+            $(document).on('click', "#mgCourse-tabContent a.btn_action, .mc-step-btn", function (e) {
+                e.preventDefault();
+                let target = $(this).data('bs-target');
+                let $elem = $(target);
+                if ($elem.length && !$elem.is('a, button')) {
+                    let $foundLink = $('a[data-bs-target="' + target + '"], button[data-bs-target="' + target + '"]');
+                    if ($foundLink.length) {
+                        $elem = $foundLink;
+                    }
+                }
+                if ($elem.length) {
+                    const tabInstance = new bootstrap.Tab($elem[0]);
+                    tabInstance.show();
                 }
             });
         });

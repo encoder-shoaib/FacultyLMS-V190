@@ -19,11 +19,19 @@
 
     $benefitsTitle = !empty($mcSettings['benefits_title']) ? $mcSettings['benefits_title'] : 'এই মাস্টারক্লাস কার জন্য?';
     $orderFormTitle = !empty($mcSettings['order_form_title']) ? $mcSettings['order_form_title'] : 'মাস্টারক্লাসে জয়েন করতে নিচের<br><span class="text-primary">ফর্মটি পূরণ করুন</span>';
+    $orderFormSubtitle = !empty($mcSettings['order_form_subtitle']) ? $mcSettings['order_form_subtitle'] : 'Give valid information';
     $faqTitle = !empty($mcSettings['faq_title']) ? $mcSettings['faq_title'] : 'কিছু সাধারণ প্রশ্নের উত্তর';
+
+    $zoomTitle = !empty($mcSettings['zoom_title']) ? $mcSettings['zoom_title'] : 'Zoom লাইভ মাস্টারক্লাস';
+    $zoomSubtitle = !empty($mcSettings['zoom_subtitle']) ? $mcSettings['zoom_subtitle'] : 'অনলাইন ইন্টারেক্টিভ সেশন';
+    $goldOfferTitle = !empty($mcSettings['gold_offer_title']) ? $mcSettings['gold_offer_title'] : 'আজকের স্পেশাল অফার';
+    $primaryCtaText = !empty($mcSettings['primary_cta_text']) ? $mcSettings['primary_cta_text'] : 'রেজিস্ট্রেশন করুন এখনই';
 
     $hideSpecialGift = !empty($mcSettings['hide_special_gift']);
     $hideExplainer = !empty($mcSettings['hide_explainer']);
     $hideBreakdown = !empty($mcSettings['hide_breakdown']);
+    $hideReviews = !empty($mcSettings['hide_reviews']);
+    $hideRelated = !empty($mcSettings['hide_related_courses']);
 
     $giftBadge = !empty($mcSettings['gift_badge']) ? $mcSettings['gift_badge'] : '🎁 যারা join করবেন তাদের জন্য special gift';
     $giftTitle = !empty($mcSettings['gift_title']) ? $mcSettings['gift_title'] : '৳১০,০০০ টাকার Ecom Dropshipping Mastery Course — সম্পূর্ণ FREE করার সুযোগ';
@@ -104,7 +112,7 @@
                            data-type="course" 
                            data-quantity="1" 
                            data-route="{{ route('add.cart') }}">
-                            রেজিস্ট্রেশন করুন এখনই <i class="fas fa-bolt ms-1"></i>
+                            {{ $primaryCtaText }} <i class="fas fa-bolt ms-1"></i>
                         </a>
                     @endif
                 </div>
@@ -136,8 +144,8 @@
                 <div class="mc-gold-item-row">
                     <div class="mc-gold-icon-circle"><i class="fas fa-video"></i></div>
                     <div>
-                        <p class="m-0 fw-bold fs-5 text-dark">Zoom লাইভ মাস্টারক্লাস</p>
-                        <small class="text-muted">অনলাইন ইন্টারেক্টিভ সেশন</small>
+                        <p class="m-0 fw-bold fs-5 text-dark">{{ $zoomTitle }}</p>
+                        <small class="text-muted">{{ $zoomSubtitle }}</small>
                     </div>
                 </div>
 
@@ -165,7 +173,7 @@
                 <div class="mc-gold-price-highlight">
                     <span class="fw-bold fs-5 text-dark d-flex align-items-center gap-2">
                         <span style="width: 12px; height: 12px; border-radius: 50%; background: #fdcc0d; display: inline-block;"></span>
-                        আজকের স্পেশাল অফার
+                        {{ $goldOfferTitle }}
                     </span>
                     <span class="fw-bold fs-4 text-success">
                         @if($course->is_free == 1 || $course->price == 0)
@@ -195,7 +203,7 @@
                     @if(!$is_enrolled)
                         <div class="text-center mt-4">
                             <a href="#register" class="mc-dual-btn">
-                                <span class="mc-dual-left">রেজিস্ট্রেশন করুন এখনই</span>
+                                <span class="mc-dual-left">{{ $primaryCtaText }}</span>
                                 <span class="mc-dual-right">
                                     @if($course->is_discountable == 1)
                                         {{ get_price($course->discount_amount, userCurrency()) }}
@@ -473,7 +481,7 @@
                             {!! $orderFormTitle !!}
                         </h2>
                         
-                        <p class="text-center text-muted small mb-4">Give valid information</p>
+                        <p class="text-center text-muted small mb-4">{{ $orderFormSubtitle }}</p>
 
                         <form action="{{ route('add.cart') }}" method="post">
                             @csrf
@@ -594,7 +602,7 @@
             {{-- =========================================================
                  12. REVIEWS SECTION
             ========================================================== --}}
-            @if(setting('hide_review_from_course_details') != '1' && $course->total_rating > 0)
+            @if(setting('hide_review_from_course_details') != '1' && !$hideReviews && $course->total_rating > 0)
                 <div class="mc-content-card">
                     <h4 class="fw-bold fs-4 text-dark mb-4 pb-2 border-bottom">{{ __('reviews') }}</h4>
                     
@@ -680,7 +688,7 @@
 {{-- =========================================================
      13. RELATED COURSES SECTION
 ========================================================== --}}
-@if(setting('disable_related_course_from_course_details') != '1' && count($related_courses) > 0)
+@if(setting('disable_related_course_from_course_details') != '1' && !$hideRelated && count($related_courses) > 0)
     <section class="bg-light py-5 border-top">
         <div class="container container-1278">
             <div class="row justify-content-center mb-4">
