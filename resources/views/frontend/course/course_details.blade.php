@@ -11,11 +11,16 @@
     $eyebrowTitle = !empty($mcSettings['eyebrow_title']) ? $mcSettings['eyebrow_title'] : ($category ? $category->lang_title : 'E-commerce শুরু করার hidden path');
     $classScheduleTitle = !empty($mcSettings['class_schedule_title']) ? $mcSettings['class_schedule_title'] : '২ দিনব্যাপী e-commerce live masterclass';
     $classScheduleTime = !empty($mcSettings['class_schedule_time']) ? $mcSettings['class_schedule_time'] : '৬ আগস্ট তারিখ রাত ৮ টায় শুরু';
+    $videoCaption = !empty($mcSettings['video_caption']) ? $mcSettings['video_caption'] : 'বিস্তারিত জানতে ভিডিওটি দেখুন';
+    $goldBadgeTop = !empty($mcSettings['gold_badge_top']) ? $mcSettings['gold_badge_top'] : 'এখনই সিট বুক করুন';
+    $scheduleBadge = !empty($mcSettings['schedule_badge']) ? $mcSettings['schedule_badge'] : 'LIVE ZOOM MASTERCLASS';
+    $dualCtaLeft = !empty($mcSettings['dual_cta_left']) ? $mcSettings['dual_cta_left'] : 'রেজিস্ট্রেশন করুন এখনই';
     
     $totalCapacity = $course->capacity > 0 ? $course->capacity : 500;
     $totalEnrolled = $course->total_enrolled > 0 ? $course->total_enrolled : 428;
     $remainingSeats = !empty($mcSettings['remaining_seats']) ? $mcSettings['remaining_seats'] : max(0, $totalCapacity - $totalEnrolled);
     $progressPercent = min(100, round(($totalEnrolled / max(1, $totalCapacity)) * 100, 1));
+    $dualCtaSeats = !empty($mcSettings['dual_cta_seats']) ? $mcSettings['dual_cta_seats'] : 'আর মাত্র ' . $remainingSeats . ' সিট বাকি';
 
     $benefitsTitle = !empty($mcSettings['benefits_title']) ? $mcSettings['benefits_title'] : 'এই মাস্টারক্লাস কার জন্য?';
     $orderFormTitle = !empty($mcSettings['order_form_title']) ? $mcSettings['order_form_title'] : 'মাস্টারক্লাসে জয়েন করতে নিচের<br><span class="text-primary">ফর্মটি পূরণ করুন</span>';
@@ -41,6 +46,7 @@
 
     $explainerTitle = !empty($mcSettings['explainer_title']) ? $mcSettings['explainer_title'] : 'একটা প্রশ্ন আপনার মাথায় আসতে পারে — এত কিছু, মাত্র ৯৯ টাকায় কেন??';
     $explainerText = !empty($mcSettings['explainer_text']) ? $mcSettings['explainer_text'] : null;
+    $breakdownSubheading = !empty($mcSettings['breakdown_subheading']) ? $mcSettings['breakdown_subheading'] : null;
     $breakdownItemsRaw = !empty($mcSettings['breakdown_items']) ? $mcSettings['breakdown_items'] : null;
 
     $breakdownRows = [];
