@@ -76,9 +76,7 @@
             <h1 class="mc-main-title">{{ $course->title }}</h1>
 
             {{-- Short Description --}}
-            @if($course->short_description)
-                <p class="mc-sub-title">{{ $course->short_description }}</p>
-            @endif
+            <p class="mc-sub-title">{{ !empty($course->short_description) ? $course->short_description : 'E-commerce বিজনেস সফলভাবে পরিচালনা করার জন্য ২ দিনব্যাপী জুম লাইভ মাস্টারক্লাস। সকল গাইডলাইন ও প্র্যাকটিক্যাল গাইড পাওয়ার জন্য আজই জয়েন করুন।' }}</p>
 
             {{-- 2. CENTERED INTRO VIDEO / MEDIA (From Admin Video Tab) --}}
             <div class="mc-video-box">
@@ -149,25 +147,21 @@
                     </div>
                 </div>
 
-                @if($course->duration)
-                    <div class="mc-gold-item-row">
-                        <div class="mc-gold-icon-circle"><i class="fas fa-clock"></i></div>
-                        <div>
-                            <p class="m-0 text-muted small">সময় / সময়সূচী</p>
-                            <p class="m-0 fw-bold fs-5 text-dark">{{ $course->duration }}</p>
-                        </div>
+                <div class="mc-gold-item-row">
+                    <div class="mc-gold-icon-circle"><i class="fas fa-clock"></i></div>
+                    <div>
+                        <p class="m-0 text-muted small">সময় / সময়সূচী</p>
+                        <p class="m-0 fw-bold fs-5 text-dark">{{ !empty($course->duration) ? $course->duration : '২ দিন (রাত ৮:০০ টা)' }}</p>
                     </div>
-                @endif
+                </div>
 
-                @if($level)
-                    <div class="mc-gold-item-row">
-                        <div class="mc-gold-icon-circle"><i class="fas fa-layer-group"></i></div>
-                        <div>
-                            <p class="m-0 text-muted small">{{ __('level') }}</p>
-                            <p class="m-0 fw-bold fs-6 text-dark">{{ $level->lang_title }}</p>
-                        </div>
+                <div class="mc-gold-item-row">
+                    <div class="mc-gold-icon-circle"><i class="fas fa-layer-group"></i></div>
+                    <div>
+                        <p class="m-0 text-muted small">{{ __('level') }}</p>
+                        <p class="m-0 fw-bold fs-6 text-dark">{{ $level ? $level->lang_title : 'Beginner to Advanced' }}</p>
                     </div>
-                @endif
+                </div>
 
                 {{-- Price Display --}}
                 <div class="mc-gold-price-highlight">
@@ -381,14 +375,16 @@
                  8. COURSE FULL DESCRIPTION (100% Admin WYSIWYG Editor Sync)
                  Field: $course->description (Admin Edit Rich Text Editor)
             ========================================================== --}}
-            @if($course->description)
-                <div class="mc-content-card">
-                    <h4 class="fw-bold fs-4 text-dark mb-3 pb-2 border-bottom">{{ __('about_this_course') }}</h4>
-                    <div class="description-body text-secondary leading-relaxed fs-6">
+            <div class="mc-content-card">
+                <h4 class="fw-bold fs-4 text-dark mb-3 pb-2 border-bottom">{{ __('about_this_course') }}</h4>
+                <div class="description-body text-secondary leading-relaxed fs-6">
+                    @if(!empty($course->description))
                         {!! $course->description !!}
-                    </div>
+                    @else
+                        <p>এই লাইভ মাস্টারক্লাসে আমরা ই-কমার্স বিজনেস শুরু থেকে স্কেল আপ করার সব দরকারি ট্রিকস ও স্ট্র্যাটেজি নিয়ে বিস্তারিত আলোচনা করবো। ক্লাসে সরাসরি প্রশ্নোত্তর পর্ব থাকবে।</p>
+                    @endif
                 </div>
-            @endif
+            </div>
 
             {{-- =========================================================
                  9. COURSE SYLLABUS / CURRICULUM ACCORDION (100% Admin Sync)
