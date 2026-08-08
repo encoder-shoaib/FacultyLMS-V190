@@ -147,7 +147,30 @@ class CourseRepository
         $request['is_discountable'] = arrayCheck('is_discountable', $request) ? $request['is_discountable'] : '0';
         $request['is_free']         = arrayCheck('is_free', $request) ? $request['is_free'] : '0';
         $request['is_renewable']    = arrayCheck('is_renewable', $request) ? $request['is_renewable'] : '0';
+
+        if (arrayCheck('masterclass_settings', $request)) {
+            $mc = $request['masterclass_settings'];
+            $mc['hide_special_gift'] = isset($mc['hide_special_gift']) ? 1 : 0;
+            $mc['hide_explainer'] = isset($mc['hide_explainer']) ? 1 : 0;
+            $mc['hide_breakdown'] = isset($mc['hide_breakdown']) ? 1 : 0;
+            $mc['hide_reviews'] = isset($mc['hide_reviews']) ? 1 : 0;
+            $mc['hide_related_courses'] = isset($mc['hide_related_courses']) ? 1 : 0;
+
+            $existing = is_array($course->masterclass_settings) ? $course->masterclass_settings : (json_decode($course->masterclass_settings, true) ?: []);
+            foreach ($mc as $k => $v) {
+                $existing[$k] = $v;
+            }
+
+            $request['masterclass_settings'] = $existing;
+            $course->masterclass_settings = $existing;
+        }
+
         $course->update($request);
+
+        if (arrayCheck('masterclass_settings', $request)) {
+            $course->masterclass_settings = $request['masterclass_settings'];
+            $course->save();
+        }
 
         if ($increment) {
             $category = Category::findOrfail($request['category_id']);

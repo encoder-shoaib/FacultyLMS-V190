@@ -27,10 +27,15 @@
     $orderFormSubtitle = !empty($mcSettings['order_form_subtitle']) ? $mcSettings['order_form_subtitle'] : 'Give valid information';
     $faqTitle = !empty($mcSettings['faq_title']) ? $mcSettings['faq_title'] : 'কিছু সাধারণ প্রশ্নের উত্তর';
 
-    $zoomTitle = !empty($mcSettings['zoom_title']) ? $mcSettings['zoom_title'] : 'Zoom লাইভ মাস্টারক্লাস';
+    $zoomTitle = !empty($mcSettings['zoom_title']) ? $mcSettings['zoom_title'] : 'Zoom লাইভ 104';
     $zoomSubtitle = !empty($mcSettings['zoom_subtitle']) ? $mcSettings['zoom_subtitle'] : 'অনলাইন ইন্টারেক্টিভ সেশন';
     $goldOfferTitle = !empty($mcSettings['gold_offer_title']) ? $mcSettings['gold_offer_title'] : 'আজকের স্পেশাল অফার';
     $primaryCtaText = !empty($mcSettings['primary_cta_text']) ? $mcSettings['primary_cta_text'] : 'রেজিস্ট্রেশন করুন এখনই';
+    $scheduleValue = !empty($mcSettings['schedule_value']) ? $mcSettings['schedule_value'] : (!empty($course->duration) ? $course->duration : '2h 40min');
+    $levelLabel = !empty($mcSettings['level_label']) ? $mcSettings['level_label'] : __('level');
+    $levelValue = !empty($mcSettings['level_value']) ? $mcSettings['level_value'] : ($level ? $level->lang_title : 'beginner');
+    $goldCtaText = !empty($mcSettings['gold_cta_text']) ? $mcSettings['gold_cta_text'] : 'এখনই জয়েন করুন';
+    $goldSeatsText = !empty($mcSettings['gold_seats_text']) ? $mcSettings['gold_seats_text'] : 'আর মাত্র ' . $remainingSeats . ' সিট বাকি';
 
     $hideSpecialGift = !empty($mcSettings['hide_special_gift']);
     $hideExplainer = !empty($mcSettings['hide_explainer']);
@@ -43,11 +48,27 @@
     $giftValue = !empty($mcSettings['gift_value']) ? $mcSettings['gift_value'] : '৳১০,০০০';
     $giftDescription = !empty($mcSettings['gift_description']) ? $mcSettings['gift_description'] : 'এই master class-এ যারা join করবেন, তারা আমার ৳১০,০০০ টাকার Ecom Dropshipping Mastery Course টা free তে করার সুযোগ পাবেন। মাস্টারক্লাসে এই বিষয়ে বিস্তারিত আলোচনা।';
     $giftQuote = !empty($mcSettings['gift_quote']) ? $mcSettings['gift_quote'] : '"এই কোর্সে আমি ই-কমার্স বিজনেস, ডিজিটাল মার্কেটিং এর বিভিন্ন বিষয় যেমন Facebook Ads, Google Ads নিয়ে বিস্তারিত শিখিয়েছি। এছাড়াও কিভাবে একটা বিজনেসকে Scale করতে তা নিয়ে ক্লাস আছে।"';
+    $giftFooterNote = !empty($mcSettings['gift_footer_note']) ? $mcSettings['gift_footer_note'] : 'যারা একদম নতুন আছেন তারাও এই কোর্স থেকে বেনিফিটেড হতে পারবে।';
+    $giftCtaText = !empty($mcSettings['gift_cta_text']) ? $mcSettings['gift_cta_text'] : 'সিট কনফার্ম করুন →';
+    $giftSeatsText = !empty($mcSettings['gift_seats_text']) ? $mcSettings['gift_seats_text'] : 'বাকি আছে মাত্র ' . $remainingSeats . ' টা seat';
 
     $explainerTitle = !empty($mcSettings['explainer_title']) ? $mcSettings['explainer_title'] : 'একটা প্রশ্ন আপনার মাথায় আসতে পারে — এত কিছু, মাত্র ৯৯ টাকায় কেন??';
     $explainerText = !empty($mcSettings['explainer_text']) ? $mcSettings['explainer_text'] : null;
     $breakdownSubheading = !empty($mcSettings['breakdown_subheading']) ? $mcSettings['breakdown_subheading'] : null;
     $breakdownItemsRaw = !empty($mcSettings['breakdown_items']) ? $mcSettings['breakdown_items'] : null;
+    $breakdownTodayTitle = !empty($mcSettings['breakdown_today_title']) ? $mcSettings['breakdown_today_title'] : 'আজকের মূল্য (token)';
+    $originalPriceLabel = !empty($mcSettings['original_price_label']) ? $mcSettings['original_price_label'] : 'মূল প্রাইস';
+    $scheduleLabel = !empty($mcSettings['schedule_label']) ? $mcSettings['schedule_label'] : 'সময় / সময়সূচী';
+
+    $nameLabel = !empty($mcSettings['name_label']) ? $mcSettings['name_label'] : 'Your Full Name';
+    $namePlaceholder = !empty($mcSettings['name_placeholder']) ? $mcSettings['name_placeholder'] : 'আপনার সম্পূর্ণ নাম';
+    $phoneLabel = !empty($mcSettings['phone_label']) ? $mcSettings['phone_label'] : 'Mobile Number';
+    $phonePlaceholder = !empty($mcSettings['phone_placeholder']) ? $mcSettings['phone_placeholder'] : '01XXXXXXXXX';
+    $emailLabel = !empty($mcSettings['email_label']) ? $mcSettings['email_label'] : 'Email address';
+    $emailPlaceholder = !empty($mcSettings['email_placeholder']) ? $mcSettings['email_placeholder'] : 'আপনার ইমেইল এড্রেস';
+    $orderSummaryTitle = !empty($mcSettings['order_summary_title']) ? $mcSettings['order_summary_title'] : 'Your order';
+    $privacyNotice = !empty($mcSettings['privacy_notice']) ? $mcSettings['privacy_notice'] : 'Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our privacy policy.';
+    $payNowBtnText = !empty($mcSettings['pay_now_btn_text']) ? $mcSettings['pay_now_btn_text'] : 'PAY NOW';
 
     $breakdownRows = [];
     if (!empty($breakdownItemsRaw)) {
@@ -96,7 +117,7 @@
             </div>
 
             <p class="small text-muted mb-4">
-                <i class="fas fa-arrow-up me-1"></i> বিস্তারিত জানতে ভিডিওটি দেখুন <i class="fas fa-arrow-up ms-1"></i>
+                <i class="fas fa-arrow-up me-1"></i> {{ $videoCaption }} <i class="fas fa-arrow-up ms-1"></i>
             </p>
 
             {{-- 3. PRIMARY ENROLL / CTA BUTTON --}}
@@ -142,7 +163,7 @@
                  Fields: $course->duration, $level->lang_title, $language->name, $course->price, $course->discount_amount
             ========================================================== --}}
             <span class="mc-gold-badge-top">
-                এখনই সিট বুক করুন
+                {{ $goldBadgeTop }}
             </span>
             <div class="mc-gold-info-card">
                 <div class="mc-gold-item-row">
@@ -156,16 +177,16 @@
                 <div class="mc-gold-item-row">
                     <div class="mc-gold-icon-circle"><i class="fas fa-clock"></i></div>
                     <div>
-                        <p class="m-0 text-muted small">সময় / সময়সূচী</p>
-                        <p class="m-0 fw-bold fs-5 text-dark">{{ !empty($course->duration) ? $course->duration : '২ দিন (রাত ৮:০০ টা)' }}</p>
+                        <p class="m-0 text-muted small">{{ $scheduleLabel }}</p>
+                        <p class="m-0 fw-bold fs-5 text-dark">{{ $scheduleValue }}</p>
                     </div>
                 </div>
 
                 <div class="mc-gold-item-row">
                     <div class="mc-gold-icon-circle"><i class="fas fa-layer-group"></i></div>
                     <div>
-                        <p class="m-0 text-muted small">{{ __('level') }}</p>
-                        <p class="m-0 fw-bold fs-6 text-dark">{{ $level ? $level->lang_title : 'Beginner to Advanced' }}</p>
+                        <p class="m-0 text-muted small">{{ $levelLabel }}</p>
+                        <p class="m-0 fw-bold fs-6 text-dark">{{ $levelValue }}</p>
                     </div>
                 </div>
 
@@ -190,7 +211,7 @@
                     <div class="mc-gold-price-old">
                         <span class="d-flex align-items-center gap-2">
                             <span style="width: 10px; height: 10px; border-radius: 50%; border: 2px solid #cbd5e0; display: inline-block;"></span>
-                            মূল প্রাইস
+                            {{ $originalPriceLabel }}
                         </span>
                         <span class="fw-bold text-decoration-line-through">
                             {{ get_price($course->price, userCurrency()) }}
@@ -203,7 +224,7 @@
                     @if(!$is_enrolled)
                         <div class="text-center mt-4">
                             <a href="#register" class="mc-dual-btn">
-                                <span class="mc-dual-left">{{ $primaryCtaText }}</span>
+                                <span class="mc-dual-left">{{ $goldCtaText }}</span>
                                 <span class="mc-dual-right">
                                     @if($course->is_discountable == 1)
                                         {{ get_price($course->discount_amount, userCurrency()) }}
@@ -215,7 +236,7 @@
                             </a>
                             <div class="mc-seats-counter mt-3">
                                 <span class="mc-pulse-dot"><span class="ping"></span><span class="dot"></span></span>
-                                <span>আর মাত্র <strong class="text-danger fw-bold">{{ $remainingSeats }} সিট বাকি</strong></span>
+                                <span>{{ $goldSeatsText }}</span>
                             </div>
                         </div>
                     @endif
@@ -233,7 +254,14 @@
                 <div class="row g-3">
                     @php
                         $benefits = [];
-                        if(!empty($course->what_will_learn)) {
+                        if(!empty($mcSettings['benefits_list']) && is_array($mcSettings['benefits_list'])) {
+                            $benefits = array_values(array_filter(array_map('trim', $mcSettings['benefits_list'])));
+                        }
+                        if(empty($benefits) && !empty($mcSettings['benefits_items'])) {
+                            $lines = array_filter(array_map('trim', explode("\n", $mcSettings['benefits_items'])));
+                            $benefits = array_values($lines);
+                        }
+                        if(empty($benefits) && !empty($course->what_will_learn)) {
                             $lines = array_filter(array_map('trim', explode("\n", strip_tags($course->what_will_learn))));
                             $benefits = array_values($lines);
                         }
@@ -285,12 +313,12 @@
                     </div>
 
                     <p class="small text-muted mb-4">
-                        যারা একদম নতুন আছেন তারাও এই কোর্স থেকে বেনিফিটেড হতে পারবে।
+                        {{ $giftFooterNote }}
                     </p>
 
                     <div class="text-center">
                         <a href="#register" class="mc-red-badge-btn">
-                            সিট কনফার্ম করুন →
+                            {{ $giftCtaText }}
                         </a>
                         <div class="mc-seats-counter mt-3">
                             <span class="mc-pulse-dot"><span class="ping"></span><span class="dot"></span></span>
@@ -362,7 +390,7 @@
                                     </tr>
                                 @endforeach
                                 <tr class="table-success border-top border-2">
-                                    <td class="fw-bold text-success">আজকের মূল্য (token)</td>
+                                    <td class="fw-bold text-success">{{ $breakdownTodayTitle }}</td>
                                     <td class="text-end fw-black fs-4 text-success">
                                         @if($course->is_discountable == 1)
                                             {{ get_price($course->discount_amount, userCurrency()) }}
@@ -492,22 +520,22 @@
                             <input type="hidden" name="quantity" value="1">
 
                             <div class="mb-3">
-                                <label class="fw-semibold text-dark mb-1">Your Full Name <span class="text-danger">*</span></label>
-                                <input type="text" name="name" class="mc-form-input" placeholder="আপনার সম্পূর্ণ নাম" required>
+                                <label class="fw-semibold text-dark mb-1">{{ $nameLabel }} <span class="text-danger">*</span></label>
+                                <input type="text" name="name" class="mc-form-input" placeholder="{{ $namePlaceholder }}" required>
                             </div>
 
                             <div class="mb-3">
-                                <label class="fw-semibold text-dark mb-1">Mobile Number <span class="text-danger">*</span></label>
-                                <input type="tel" name="phone" class="mc-form-input" placeholder="01XXXXXXXXX" required>
+                                <label class="fw-semibold text-dark mb-1">{{ $phoneLabel }} <span class="text-danger">*</span></label>
+                                <input type="tel" name="phone" class="mc-form-input" placeholder="{{ $phonePlaceholder }}" required>
                             </div>
 
                             <div class="mb-3">
-                                <label class="fw-semibold text-dark mb-1">Email address <span class="text-danger">*</span></label>
-                                <input type="email" name="email" class="mc-form-input" placeholder="আপনার ইমেইল এড্রেস" required>
+                                <label class="fw-semibold text-dark mb-1">{{ $emailLabel }} <span class="text-danger">*</span></label>
+                                <input type="email" name="email" class="mc-form-input" placeholder="{{ $emailPlaceholder }}" required>
                             </div>
 
                             <div class="mc-breakdown-card border-0 bg-white p-3 mb-4">
-                                <p class="fw-bold text-dark mb-2">Your order</p>
+                                <p class="fw-bold text-dark mb-2">{{ $orderSummaryTitle }}</p>
                                 <div class="d-flex justify-content-between align-items-center p-3 bg-light rounded-3">
                                     <span class="fw-bold text-dark">{{ $course->title }}</span>
                                     <span class="fw-bold text-success fs-5">
@@ -521,11 +549,11 @@
                             </div>
 
                             <p class="small text-muted mb-4">
-                                Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our privacy policy.
+                                {{ $privacyNotice }}
                             </p>
 
                             <button type="submit" class="mc-btn-primary-cta w-100 py-3 border-0">
-                                PAY NOW <i class="fas fa-lock ms-2"></i>
+                                {{ $payNowBtnText }} <i class="fas fa-lock ms-2"></i>
                             </button>
                         </form>
                     </div>
@@ -542,13 +570,48 @@
                     <span class="d-block mx-auto mb-4" style="width: 70px; height: 3px; background: #fdcc0d; border-radius: 10px;"></span>
 
                     @php
-                        $displayFaqs = [
-                            (object)['question' => 'লাইভ ক্লাসে কিভাবে যুক্ত হবো?', 'answer' => 'আপনি পেমেন্ট করার পর আপনাকে আমাদের একটা প্রাইভেট গ্রুপে জয়েন করানো হবে, এবং যেদিন লাইভ ক্লাসগুলো হবে সেদিন আপনাকে জুমের লিংক শেয়ার করা হবে'],
-                            (object)['question' => 'লাইভ ক্লাসগুলো কত ঘন্টার হবে?', 'answer' => 'এইটা সঠিক ভাবে বলা যাচ্ছে না, যে টাইম দেয়া আছে ঠিক সেই সময়েই শুরু হবে কিন্তু শেষ হবে আপনাদের ইচ্ছায়। যতক্ষণ আপনাদের প্রয়োজন আমি লাইভে থাকবো ইনশাআল্লাহ্'],
-                            (object)['question' => 'মাষ্টার ক্লাসটিতে ডিস্কাউন্ট দেয়া যাবে না?', 'answer' => 'বর্তমানে বিশাল ডিস্কাউন্ট দেয়া আছে তবে প্রতিনিয়ত প্রোগ্রামটির মূল্য কিছু কিছু করে বাড়ানো হবে। তাই যত দ্রুত যুক্ত হবেন তত বেশি আপনারই লাভ।'],
-                            (object)['question' => 'লাইভ ক্লাসের কি কোন রেকর্ড দেয়া হবে?', 'answer' => 'এখনো পর্যন্ত আমরা লাইভ ক্লাসের রেকর্ড দেয়ার কথা চিন্তা করছি না, তবে ভবিষ্যতে প্রয়োজন ভেদে আমরা রেকর্ড ভার্সন দেয়ার কথা চিন্তা করে দেখবো। তবে যারা সত্যিকার অর্থেই সিরিয়াস তারা লাইভ ক্লাসে জয়েন করবেই।'],
-                            (object)['question' => 'আপনাদের নেক্সট লাইভ মাষ্টারক্লাস কবে হবে', 'answer' => 'আমরা আপাতত আর লাইভ মাষ্টারক্লাস করানো কোন প্ল্যান রাখছি না, এইবারই লাস্ট। তাই সময় ম্যানেজ করে এইবারই যুক্ত হোন, যত দেরি করবেন শিখতে তত পিছিয়ে পড়বেন'],
-                        ];
+                        $displayFaqs = [];
+
+                        if (!empty($mcSettings['faq_list']) && is_array($mcSettings['faq_list'])) {
+                            foreach ($mcSettings['faq_list'] as $item) {
+                                if (!empty($item['question']) || !empty($item['answer'])) {
+                                    $displayFaqs[] = (object)[
+                                        'question' => $item['question'] ?? '',
+                                        'answer'   => $item['answer'] ?? ''
+                                    ];
+                                }
+                            }
+                        }
+
+                        if (empty($displayFaqs) && !empty($mcSettings['faq_items'])) {
+                            $lines = array_filter(array_map('trim', explode("\n", $mcSettings['faq_items'])));
+                            foreach ($lines as $line) {
+                                $parts = explode('|', $line);
+                                if (isset($parts[0]) && isset($parts[1])) {
+                                    $displayFaqs[] = (object)[
+                                        'question' => trim($parts[0]),
+                                        'answer'   => trim($parts[1])
+                                    ];
+                                }
+                            }
+                        }
+                        if (empty($displayFaqs) && count($faqs) > 0) {
+                            foreach ($faqs as $f) {
+                                $displayFaqs[] = (object)[
+                                    'question' => $f->question,
+                                    'answer' => $f->answer
+                                ];
+                            }
+                        }
+                        if (empty($displayFaqs)) {
+                            $displayFaqs = [
+                                (object)['question' => 'লাইভ ক্লাসে কিভাবে যুক্ত হবো?', 'answer' => 'আপনি পেমেন্ট করার পর আপনাকে আমাদের একটা প্রাইভেট গ্রুপে জয়েন করানো হবে, এবং যেদিন লাইভ ক্লাসগুলো হবে সেদিন আপনাকে জুমের লিংক শেয়ার করা হবে'],
+                                (object)['question' => 'লাইভ ক্লাসগুলো কত ঘন্টার হবে?', 'answer' => 'এইটা সঠিক ভাবে বলা যাচ্ছে না, যে টাইম দেয়া আছে ঠিক সেই সময়েই শুরু হবে কিন্তু শেষ হবে আপনাদের ইচ্ছায়। যতক্ষণ আপনাদের প্রয়োজন আমি লাইভে থাকবো ইনশাআল্লাহ্'],
+                                (object)['question' => 'মাষ্টার ক্লাসটিতে ডিস্কাউন্ট দেয়া যাবে না?', 'answer' => 'বর্তমানে বিশাল ডিস্কাউন্ট দেয়া আছে তবে প্রতিনিয়ত প্রোগ্রামটির মূল্য কিছু কিছু করে বাড়ানো হবে। তাই যত দ্রুত যুক্ত হবেন তত বেশি আপনারই লাভ।'],
+                                (object)['question' => 'লাইভ ক্লাসের কি কোন রেকর্ড দেয়া হবে?', 'answer' => 'এখনো পর্যন্ত আমরা লাইভ ক্লাসের রেকর্ড দেয়ার কথা চিন্তা করছি না, তবে ভবিষ্যতে প্রয়োজন ভেদে আমরা রেকর্ড ভার্সন দেয়ার কথা চিন্তা করে দেখবো। তবে যারা সত্যিকার অর্থেই সিরিয়াস তারা লাইভ ক্লাসে জয়েন করবেই।'],
+                                (object)['question' => 'আপনাদের নেক্সট লাইভ মাষ্টারক্লাস কবে হবে', 'answer' => 'আমরা আপাতত আর লাইভ মাষ্টারক্লাস করানো কোন প্ল্যান রাখছি না, এইবারই লাস্ট। তাই সময় ম্যানেজ করে এইবারই যুক্ত হোন, যত দেরি করবেন শিখতে তত পিছিয়ে পড়বেন'],
+                            ];
+                        }
                     @endphp
 
                     <div class="accordion mc-faq-accordion accordion-flush mt-4" id="faqAccordion">
@@ -581,7 +644,7 @@
                         @if(!$is_enrolled)
                             <div class="text-center mt-5">
                                 <a href="#register" class="mc-dual-btn">
-                                    <span class="mc-dual-left">রেজিস্ট্রেশন করুন এখনই</span>
+                                    <span class="mc-dual-left">{{ $dualCtaLeft }}</span>
                                     <span class="mc-dual-right">
                                         @if($course->is_discountable == 1)
                                             {{ get_price($course->discount_amount, userCurrency()) }}
@@ -593,7 +656,7 @@
                                 </a>
                                 <div class="mc-seats-counter mt-3">
                                     <span class="mc-pulse-dot"><span class="ping"></span><span class="dot"></span></span>
-                                    <span>আর মাত্র <strong class="text-danger fw-bold">৭২ সিট বাকি</strong></span>
+                                    <span>{{ $dualCtaSeats }}</span>
                                 </div>
                             </div>
                         @endif

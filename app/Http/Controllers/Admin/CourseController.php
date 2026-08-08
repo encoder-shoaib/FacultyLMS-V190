@@ -183,7 +183,10 @@ class CourseController extends Controller
 
             Toastr::success(__('update_successful'));
 
-            return redirect()->route('courses.index');
+            if ($request->has('tab')) {
+                return redirect()->route('courses.edit', [$id, 'tab' => $request->tab]);
+            }
+            return redirect()->back();
         } catch (\Exception $e) {
             Toastr::error($e->getMessage());
 
