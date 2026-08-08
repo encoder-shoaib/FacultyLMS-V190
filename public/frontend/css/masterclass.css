@@ -1,0 +1,480 @@
+    /* ============================================================
+       FACULTY LMS - DYNAMIC MASTERCLASS LANDING PAGE (WHITE THEME)
+       100% Sync with Admin Panel (/admin/courses/{id}/edit)
+       Inherits Theme Fonts & Design Tokens from base.blade.php
+       ============================================================ */
+    .masterclass-page-wrapper {
+        background-color: #ffffff !important;
+        color: #1a202c !important;
+        font-family: var(--body-font, system-ui, -apple-system, sans-serif);
+    }
+    
+    .mc-container {
+        max-width: 840px;
+        margin: 0 auto;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .mc-hero-header {
+        text-align: center;
+        padding-top: 40px;
+        padding-bottom: 30px;
+        background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+        border-bottom: 1px solid #edf2f7;
+    }
+
+    .mc-eyebrow-badge {
+        display: inline-block;
+        background-color: rgba(27, 138, 46, 0.08);
+        border: 1px solid rgba(27, 138, 46, 0.2);
+        color: #1b8a2e;
+        font-size: 0.85rem;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        padding: 6px 18px;
+        border-radius: 50px;
+        margin-bottom: 16px;
+    }
+
+    .mc-main-title {
+        font-family: var(--header-font, system-ui, sans-serif);
+        font-size: clamp(1.8rem, 4vw, 2.6rem);
+        font-weight: 800;
+        color: #1a202c !important;
+        line-height: 1.25;
+        margin-bottom: 16px;
+    }
+
+    .mc-sub-title {
+        font-size: 1.05rem;
+        color: #4a5568;
+        line-height: 1.65;
+        max-width: 760px;
+        margin: 0 auto 20px;
+    }
+
+    .mc-meta-bar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        flex-wrap: wrap;
+        font-size: 0.9rem;
+        color: #718096;
+    }
+
+    .mc-video-box {
+        background-color: #000000;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        margin-bottom: 16px;
+        border: 1px solid #e2e8f0;
+    }
+
+    .mc-video-box iframe, 
+    .mc-video-box video, 
+    .mc-video-box .plyr {
+        width: 100% !important;
+        border-radius: 16px;
+    }
+
+    /* Primary High-Converting CTA Button */
+    .mc-btn-primary-cta {
+        display: block;
+        width: 100%;
+        max-width: 540px;
+        margin: 0 auto;
+        background: linear-gradient(180deg, #3CFD59 0%, #1b8a2e 100%) !important;
+        color: #000000 !important;
+        font-size: 1.25rem !important;
+        font-weight: 800 !important;
+        text-align: center;
+        padding: 16px 28px;
+        border-radius: 12px;
+        border: none !important;
+        box-shadow: 0 6px 22px rgba(60, 253, 89, 0.35);
+        text-decoration: none !important;
+        transition: all 0.2s ease-in-out;
+        cursor: pointer;
+    }
+
+    .mc-btn-primary-cta:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 28px rgba(60, 253, 89, 0.5);
+        color: #000000 !important;
+    }
+
+    .mc-dual-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+        overflow: hidden;
+        text-decoration: none !important;
+        box-shadow: 0 4px 16px rgba(253, 253, 60, 0.3);
+        transition: transform 0.2s ease;
+    }
+
+    .mc-dual-btn:hover {
+        transform: scale(1.02);
+    }
+
+    .mc-dual-left {
+        background: linear-gradient(90deg, #FDFD3C 10%, #FFFFCE 50%, #FDFD3C 90%);
+        color: #000000;
+        font-size: 1.1rem;
+        font-weight: 800;
+        padding: 14px 24px;
+    }
+
+    .mc-dual-right {
+        background: linear-gradient(90deg, #FDFD3C 10%, #FFFFCE 50%, #FDFD3C 90%);
+        color: #000000;
+        font-size: 1.1rem;
+        font-weight: 800;
+        padding: 14px 24px;
+        border-left: 1px solid rgba(0,0,0,0.15);
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .mc-red-badge-btn {
+        display: inline-block;
+        background: linear-gradient(90deg, #f7971e, #ff5858);
+        color: #ffffff !important;
+        font-size: 1.1rem;
+        font-weight: 800;
+        padding: 15px 36px;
+        border-radius: 12px;
+        text-decoration: none !important;
+        box-shadow: 0 6px 20px rgba(255, 88, 88, 0.35);
+        transition: transform 0.2s ease;
+    }
+
+    .mc-red-badge-btn:hover {
+        transform: scale(1.03);
+        color: #ffffff !important;
+    }
+
+    /* Pulsing Seats Counter */
+    .mc-seats-counter {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        font-size: 0.92rem;
+        color: #4a5568;
+        margin-top: 12px;
+    }
+
+    .mc-pulse-dot {
+        position: relative;
+        display: inline-flex;
+        height: 10px;
+        width: 10px;
+    }
+
+    .mc-pulse-dot span.ping {
+        position: absolute;
+        display: inline-flex;
+        height: 100%;
+        width: 100%;
+        border-radius: 50%;
+        background-color: #ff5858;
+        opacity: 0.75;
+        animation: ping 1.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+    }
+
+    .mc-pulse-dot span.dot {
+        position: relative;
+        display: inline-flex;
+        border-radius: 50%;
+        height: 10px;
+        width: 10px;
+        background-color: #ff5858;
+    }
+
+    @keyframes ping {
+        75%, 100% { transform: scale(2); opacity: 0; }
+    }
+
+    /* Gold Info Card */
+    .mc-gold-info-card {
+        background: #ffffff;
+        border: 2px solid #C47942;
+        border-radius: 20px;
+        padding: 28px;
+        margin-top: 32px;
+        margin-bottom: 32px;
+        box-shadow: 0 8px 25px rgba(196, 121, 66, 0.08);
+    }
+
+    .mc-gold-badge-top {
+        display: block;
+        width: fit-content;
+        margin: 0 auto -20px;
+        position: relative;
+        z-index: 2;
+        background: #ffffff;
+        border: 2px solid #C47942;
+        border-radius: 12px 12px 0 0;
+        padding: 6px 22px;
+        font-size: 1.05rem;
+        font-weight: 800;
+        color: #C47942;
+    }
+
+    .mc-gold-item-row {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(196, 121, 66, 0.15);
+    }
+
+    .mc-gold-item-row:last-child {
+        border-bottom: none;
+    }
+
+    .mc-gold-icon-circle {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: #fffaf5;
+        border: 1px solid rgba(196, 121, 66, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #C47942;
+        font-size: 1.15rem;
+        flex-shrink: 0;
+    }
+
+    .mc-gold-price-highlight {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: #f0fff4;
+        border: 1px solid #b2f0c5;
+        border-radius: 12px;
+        padding: 16px 20px;
+        margin-top: 20px;
+    }
+
+    .mc-gold-price-old {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 20px;
+        color: #718096;
+    }
+
+    /* Benefits Grid Card */
+    .mc-benefits-card-wrapper {
+        background: #ffffff;
+        border: 2px solid #fdcc0d;
+        border-radius: 20px;
+        padding: 32px 24px;
+        margin-bottom: 35px;
+        box-shadow: 0 6px 25px rgba(253, 204, 13, 0.1);
+        text-align: center;
+    }
+
+    .mc-benefit-single-card {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 14px;
+        padding: 20px 14px;
+        text-align: center;
+        height: 100%;
+        transition: all 0.2s ease;
+    }
+
+    .mc-benefit-single-card:hover {
+        border-color: #1b8a2e;
+        transform: translateY(-3px);
+        box-shadow: 0 6px 18px rgba(27, 138, 46, 0.1);
+    }
+
+    .mc-benefit-single-card .check-circle {
+        width: 38px;
+        height: 38px;
+        background: #1b8a2e;
+        color: #ffffff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 12px;
+        font-size: 1rem;
+    }
+
+    .mc-benefit-single-card p {
+        font-size: 0.92rem;
+        font-weight: 700;
+        color: #2d3748;
+        margin: 0;
+        line-height: 1.45;
+    }
+
+    /* Special Gift Box */
+    .mc-special-gift-card {
+        background: linear-gradient(135deg, #fff7f0 0%, #ffffff 100%);
+        border: 2px solid #C47942;
+        border-radius: 20px;
+        padding: 32px 28px;
+        margin-bottom: 35px;
+        box-shadow: 0 8px 30px rgba(196, 121, 66, 0.1);
+    }
+
+    .mc-gift-pill {
+        display: inline-block;
+        background: #fffbea;
+        border: 1px solid #fce83a;
+        color: #b8860b;
+        font-size: 0.88rem;
+        font-weight: 800;
+        padding: 6px 18px;
+        border-radius: 50px;
+        margin-bottom: 16px;
+    }
+
+    .mc-callout-quote {
+        background: #ffffff;
+        border-left: 4px solid #ff7a30;
+        border-radius: 10px;
+        padding: 16px 20px;
+        font-style: italic;
+        color: #4a5568;
+        margin-top: 18px;
+        margin-bottom: 18px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    }
+
+    /* Progress Bar Box */
+    .mc-progress-box {
+        background: #eaf3ff;
+        border: 1px solid #cfe2ff;
+        border-radius: 16px;
+        padding: 22px;
+        margin-bottom: 28px;
+        color: #1a365d;
+        text-align: center;
+    }
+
+    .mc-progress-bar-bg {
+        height: 12px;
+        background: #dbe7ff;
+        border-radius: 20px;
+        overflow: hidden;
+        margin-top: 10px;
+        margin-bottom: 8px;
+    }
+
+    .mc-progress-bar-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #4A90D9, #1c6dd0);
+        border-radius: 20px;
+    }
+
+    .mc-blue-explainer {
+        background: #ffffff;
+        border-left: 5px solid #1c6dd0;
+        border-radius: 14px;
+        padding: 26px;
+        border: 1px solid #e2e8f0;
+        border-left-width: 5px;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
+        margin-bottom: 28px;
+    }
+
+    .mc-breakdown-card {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 16px;
+        padding: 26px;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+        margin-bottom: 32px;
+    }
+
+    /* Registration Form Card */
+    .mc-form-wrapper {
+        background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+        border: 2px solid #1c6dd0;
+        border-radius: 20px;
+        padding: 32px 26px;
+        box-shadow: 0 10px 35px rgba(28, 109, 208, 0.1);
+        margin-bottom: 40px;
+    }
+
+    .mc-form-input {
+        width: 100%;
+        background: #ffffff;
+        border: 1px solid #cbd5e0;
+        border-radius: 10px;
+        padding: 13px 16px;
+        font-size: 0.96rem;
+        color: #1a202c;
+        margin-top: 6px;
+        margin-bottom: 18px;
+        transition: border-color 0.2s ease;
+    }
+
+    .mc-form-input:focus {
+        outline: none;
+        border-color: #1c6dd0;
+        box-shadow: 0 0 0 3px rgba(28, 109, 208, 0.15);
+    }
+
+    /* Content Section Card */
+    .mc-content-card {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 18px;
+        padding: 28px;
+        margin-bottom: 32px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    }
+
+    /* FAQ Accordion */
+    .mc-faq-accordion .accordion-item {
+        border: 1px solid #e2e8f0 !important;
+        border-radius: 12px !important;
+        margin-bottom: 10px;
+        overflow: hidden;
+        background: #ffffff !important;
+    }
+
+    .mc-faq-accordion .accordion-button {
+        background: #ffffff !important;
+        color: #1a202c !important;
+        font-weight: 700;
+        font-size: 1rem;
+        padding: 16px 20px;
+        box-shadow: none !important;
+    }
+
+    .mc-faq-accordion .accordion-button:not(.collapsed) {
+        background: #f0fff4 !important;
+        color: #1b8a2e !important;
+        border-bottom: 1px solid #b2f0c5 !important;
+    }
+
+    .mc-faq-accordion .accordion-body {
+        background: #fafafa !important;
+        color: #4a5568;
+        line-height: 1.65;
+        font-size: 0.95rem;
+        padding: 18px 20px;
+    }
+
+    @media (max-width: 768px) {
+        .mc-hero-header { padding-top: 30px; }
+        .mc-main-title { font-size: 1.55rem; }
+        .mc-gold-info-card { padding: 20px 16px; }
+        .mc-special-gift-card { padding: 22px 18px; }
+        .mc-form-wrapper { padding: 22px 18px; }
+    }

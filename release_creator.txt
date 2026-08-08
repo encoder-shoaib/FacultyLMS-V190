@@ -1,0 +1,12 @@
+app/Http/Controllers/Site/CourseController.php
+app/Http/Controllers/Site/ProfileController.php
+app/Models/BundleCourse.php
+app/Repositories/CourseRepository.php
+public/frontend/img/icons/gift-box.svg
+resources/views/frontend/course/course_details.blade.php
+resources/views/frontend/profile/components/bundle_course.blade.php
+resources/views/frontend/profile/components/purchase_course.blade.php
+resources/views/frontend/profile/profile_dashboard.blade.php
+resources/views/frontend/profile/purchase_bundle.blade.php
+resources/views/frontend/profile/sidebar.blade.php
+routes/web.php
