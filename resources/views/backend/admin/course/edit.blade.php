@@ -129,7 +129,7 @@
                                 {{ __('resource') }}
                             </a>
                         </li>
-                        <li class="nav-item " role="presentation">
+                        <li class="nav-item" role="presentation">
                             <a class="nav-link tab_change {{ $step_1_error || $step_2_error || $step_3_error }} {{ $request_tab == 'faq' ? 'active' : '' }}"
                                data-tab="faq" id="faq" data-bs-toggle="pill" data-bs-target="#courseFAQ"
                                role="tab" aria-controls="courseFAQ" aria-selected="false">
@@ -140,13 +140,20 @@
                                         {{ 8 }}
                                     @endif
                                 </span>
-                                {{-- <span class="default-tab-count num_live">8</span> --}}
+                                {{ __('faq') }}
+                            </a>
                         </li>
                         <li class="nav-item" role="presentation">
                             <a class="nav-link tab_change {{ $request_tab == 'masterclass' ? 'active' : '' }}"
                                data-tab="masterclass" id="masterclass" data-bs-toggle="pill" data-bs-target="#courseMasterclass"
                                role="tab" aria-controls="courseMasterclass" aria-selected="false">
-                                <span class="default-tab-count">10</span>
+                                <span class="default-tab-count masterclassIndex">
+                                    @if ($course->course_type == 'live_class')
+                                        {{ 10 }}
+                                    @else
+                                        {{ 9 }}
+                                    @endif
+                                </span>
                                 {{ __('Masterclass Landing') }}
                             </a>
                         </li>
