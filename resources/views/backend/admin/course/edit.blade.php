@@ -1263,57 +1263,36 @@
                                         </div>
                                     </div>
 
-                                    <!-- Sub-Nav Pill Steps (13 Steps) -->
+                                    <!-- Sub-Nav Pill Steps (6 Steps Wizard) -->
                                     <ul class="nav nav-pills flex-wrap gap-2 mb-4 p-2 bg-white rounded-3 border" id="mc-steps-pills" role="tablist">
                                         <li class="nav-item" role="presentation">
-                                            <button class="nav-link active btn-sm fw-bold" id="pills-mc-step-1-tab" data-bs-toggle="pill" data-bs-target="#mc-step-1" type="button" role="tab"><span class="badge bg-primary me-1">1</span> Hero</button>
+                                            <button class="nav-link active btn-sm fw-bold" id="pills-mc-step-1-tab" data-bs-toggle="pill" data-bs-target="#mc-step-1" type="button" role="tab"><span class="badge bg-primary me-1">1</span> Hero & Header</button>
                                         </li>
                                         <li class="nav-item" role="presentation">
-                                            <button class="nav-link btn-sm fw-bold" id="pills-mc-step-2-tab" data-bs-toggle="pill" data-bs-target="#mc-step-2" type="button" role="tab"><span class="badge bg-secondary me-1">2</span> Info Card</button>
+                                            <button class="nav-link btn-sm fw-bold" id="pills-mc-step-2-tab" data-bs-toggle="pill" data-bs-target="#mc-step-2" type="button" role="tab"><span class="badge bg-secondary me-1">2</span> Benefits & Audience</button>
                                         </li>
                                         <li class="nav-item" role="presentation">
-                                            <button class="nav-link btn-sm fw-bold" id="pills-mc-step-3-tab" data-bs-toggle="pill" data-bs-target="#mc-step-3" type="button" role="tab"><span class="badge bg-secondary me-1">3</span> Benefits</button>
+                                            <button class="nav-link btn-sm fw-bold" id="pills-mc-step-3-tab" data-bs-toggle="pill" data-bs-target="#mc-step-3" type="button" role="tab"><span class="badge bg-secondary me-1">3</span> Special Gift Offer</button>
                                         </li>
                                         <li class="nav-item" role="presentation">
-                                            <button class="nav-link btn-sm fw-bold" id="pills-mc-step-4-tab" data-bs-toggle="pill" data-bs-target="#mc-step-4" type="button" role="tab"><span class="badge bg-secondary me-1">4</span> Special Gift</button>
+                                            <button class="nav-link btn-sm fw-bold" id="pills-mc-step-4-tab" data-bs-toggle="pill" data-bs-target="#mc-step-4" type="button" role="tab"><span class="badge bg-secondary me-1">4</span> Schedule & Explainer</button>
                                         </li>
                                         <li class="nav-item" role="presentation">
-                                            <button class="nav-link btn-sm fw-bold" id="pills-mc-step-5-tab" data-bs-toggle="pill" data-bs-target="#mc-step-5" type="button" role="tab"><span class="badge bg-secondary me-1">5</span> Schedule</button>
+                                            <button class="nav-link btn-sm fw-bold" id="pills-mc-step-5-tab" data-bs-toggle="pill" data-bs-target="#mc-step-5" type="button" role="tab"><span class="badge bg-secondary me-1">5</span> Price Breakdown & Order</button>
                                         </li>
                                         <li class="nav-item" role="presentation">
-                                            <button class="nav-link btn-sm fw-bold" id="pills-mc-step-6-tab" data-bs-toggle="pill" data-bs-target="#mc-step-6" type="button" role="tab"><span class="badge bg-secondary me-1">6</span> Explainer</button>
-                                        </li>
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link btn-sm fw-bold" id="pills-mc-step-7-tab" data-bs-toggle="pill" data-bs-target="#mc-step-7" type="button" role="tab"><span class="badge bg-secondary me-1">7</span> Breakdown</button>
-                                        </li>
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link btn-sm fw-bold" id="pills-mc-step-8-tab" data-bs-toggle="pill" data-bs-target="#mc-step-8" type="button" role="tab"><span class="badge bg-secondary me-1">8</span> Description</button>
-                                        </li>
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link btn-sm fw-bold" id="pills-mc-step-9-tab" data-bs-toggle="pill" data-bs-target="#mc-step-9" type="button" role="tab"><span class="badge bg-secondary me-1">9</span> Curriculum</button>
-                                        </li>
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link btn-sm fw-bold" id="pills-mc-step-10-tab" data-bs-toggle="pill" data-bs-target="#mc-step-10" type="button" role="tab"><span class="badge bg-secondary me-1">10</span> Registration</button>
-                                        </li>
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link btn-sm fw-bold" id="pills-mc-step-11-tab" data-bs-toggle="pill" data-bs-target="#mc-step-11" type="button" role="tab"><span class="badge bg-secondary me-1">11</span> FAQ</button>
-                                        </li>
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link btn-sm fw-bold" id="pills-mc-step-12-tab" data-bs-toggle="pill" data-bs-target="#mc-step-12" type="button" role="tab"><span class="badge bg-secondary me-1">12</span> Reviews</button>
-                                        </li>
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link btn-sm fw-bold" id="pills-mc-step-13-tab" data-bs-toggle="pill" data-bs-target="#mc-step-13" type="button" role="tab"><span class="badge bg-secondary me-1">13</span> Related Courses</button>
+                                            <button class="nav-link btn-sm fw-bold" id="pills-mc-step-6-tab" data-bs-toggle="pill" data-bs-target="#mc-step-6" type="button" role="tab"><span class="badge bg-secondary me-1">6</span> FAQs & Visibility</button>
                                         </li>
                                     </ul>
 
-                                    <!-- Sub Tab Panes (13 Steps) -->
+                                    <!-- Sub Tab Panes (6 Steps) -->
                                     <div class="tab-content bg-white p-4 rounded-3 border" id="mc-steps-content">
                                         
-                                        <!-- Step 1: Hero Section -->
+                                        <!-- Step 1: Hero & Header Section -->
                                         <div class="tab-pane fade show active" id="mc-step-1" role="tabpanel">
                                             <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-4">
-                                                <h5 class="fw-bold text-dark m-0"><span class="badge bg-primary me-2">Step 1</span> Hero Header Section</h5>
-                                                <span class="text-muted small">Controls top hero headline & CTA</span>
+                                                <h5 class="fw-bold text-dark m-0"><span class="badge bg-primary me-2">Step 1</span> Hero Header & Info Card Section</h5>
+                                                <span class="text-muted small">Controls top hero badge, CTA & gold info card</span>
                                             </div>
 
                                             <div class="row gx-20">
@@ -1330,27 +1309,6 @@
                                                            value="{{ $mcSettings['primary_cta_text'] ?? '' }}" placeholder="রেজিস্ট্রেশন করুন এখনই">
                                                 </div>
 
-                                                <div class="col-12">
-                                                    <div class="alert alert-info py-2 fs-7 m-0">
-                                                        <i class="fas fa-info-circle me-1"></i> Main Course Title, Short Description, and Intro Video are edited in <strong>Step 1 (Basic Info)</strong> and <strong>Step 2 (Media & Images)</strong>.
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
-                                                <a href="#" class="btn sg-btn-outline-primary btn_action" data-bs-toggle="pill" data-bs-target="#courseFAQ">{{ __('back') }}</a>
-                                                <button type="button" class="btn sg-btn-primary mc-step-btn" data-bs-target="#pills-mc-step-2-tab">Save & Next ></button>
-                                            </div>
-                                        </div>
-
-                                        <!-- Step 2: Masterclass Info Card -->
-                                        <div class="tab-pane fade" id="mc-step-2" role="tabpanel">
-                                            <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-4">
-                                                <h5 class="fw-bold text-dark m-0"><span class="badge bg-primary me-2">Step 2</span> Masterclass Info Card</h5>
-                                                <span class="text-muted small">Controls gold border info box</span>
-                                            </div>
-
-                                            <div class="row gx-20">
                                                 <div class="col-lg-4 col-md-6 mb-4">
                                                     <label class="form-label fw-bold">Zoom Live Title</label>
                                                     <input type="text" name="masterclass_settings[zoom_title]" class="form-control rounded-2"
@@ -1368,19 +1326,25 @@
                                                     <input type="text" name="masterclass_settings[gold_offer_title]" class="form-control rounded-2"
                                                            value="{{ $mcSettings['gold_offer_title'] ?? '' }}" placeholder="আজকের স্পেশাল অফার">
                                                 </div>
+
+                                                <div class="col-12">
+                                                    <div class="alert alert-info py-2 fs-7 m-0">
+                                                        <i class="fas fa-info-circle me-1"></i> Main Course Title, Short Description, and Intro Video are edited in <strong>Step 1 (Basic Info)</strong> and <strong>Step 2 (Media & Images)</strong>.
+                                                    </div>
+                                                </div>
                                             </div>
 
                                             <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
-                                                <button type="button" class="btn sg-btn-outline-primary mc-step-btn" data-bs-target="#pills-mc-step-1-tab">< Back</button>
-                                                <button type="button" class="btn sg-btn-primary mc-step-btn" data-bs-target="#pills-mc-step-3-tab">Save & Next ></button>
+                                                <a href="#" class="btn sg-btn-outline-primary btn_action" data-bs-toggle="pill" data-bs-target="#courseFAQ">{{ __('back') }}</a>
+                                                <button type="button" class="btn sg-btn-primary mc-step-btn" data-bs-target="#pills-mc-step-2-tab">Save & Next ></button>
                                             </div>
                                         </div>
 
-                                        <!-- Step 3: Benefits -->
-                                        <div class="tab-pane fade" id="mc-step-3" role="tabpanel">
+                                        <!-- Step 2: Benefits & Audience -->
+                                        <div class="tab-pane fade" id="mc-step-2" role="tabpanel">
                                             <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-4">
-                                                <h5 class="fw-bold text-dark m-0"><span class="badge bg-primary me-2">Step 3</span> Benefits Section</h5>
-                                                <span class="text-muted small">Controls "এই মাস্টারক্লাস কার জন্য?"</span>
+                                                <h5 class="fw-bold text-dark m-0"><span class="badge bg-primary me-2">Step 2</span> Benefits & Target Audience Section</h5>
+                                                <span class="text-muted small">Controls "এই মাস্টারক্লাস কার জন্য?" section</span>
                                             </div>
 
                                             <div class="row gx-20">
@@ -1390,24 +1354,25 @@
                                                            value="{{ $mcSettings['benefits_title'] ?? '' }}" placeholder="এই মাস্টারক্লাস কার জন্য?">
                                                 </div>
 
-                                                <div class="col-12">
-                                                    <div class="alert alert-info py-2 fs-7 m-0">
-                                                        <i class="fas fa-info-circle me-1"></i> Individual benefit bullet items are edited under <strong>"What Will Be Learned"</strong> in <strong>Step 1 (Basic Info)</strong>.
-                                                    </div>
+                                                <div class="col-lg-12 col-md-12 mb-4">
+                                                    <label class="form-label fw-bold">Custom Benefit Items (One Per Line)</label>
+                                                    <textarea name="masterclass_settings[benefits_items]" class="form-control rounded-2" rows="4"
+                                                              placeholder="অনলাইন বিজনেস করতে চান কিন্তু কনফিউজড&#10;পুঁজি কম নিয়ে বিজনেস শুরু করতে চাচ্ছেন&#10;ই-কমার্স বিজনেস শুরু করার ভয় আছে&#10;লস না করে সঠিকভাবে শুরু করতে চান">{{ $mcSettings['benefits_items'] ?? '' }}</textarea>
+                                                    <small class="text-muted">Enter each benefit point on a new line. Leave empty to use default masterclass benefits.</small>
                                                 </div>
                                             </div>
 
                                             <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
-                                                <button type="button" class="btn sg-btn-outline-primary mc-step-btn" data-bs-target="#pills-mc-step-2-tab">< Back</button>
-                                                <button type="button" class="btn sg-btn-primary mc-step-btn" data-bs-target="#pills-mc-step-4-tab">Save & Next ></button>
+                                                <button type="button" class="btn sg-btn-outline-primary mc-step-btn" data-bs-target="#pills-mc-step-1-tab">< Back</button>
+                                                <button type="button" class="btn sg-btn-primary mc-step-btn" data-bs-target="#pills-mc-step-3-tab">Save & Next ></button>
                                             </div>
                                         </div>
 
-                                        <!-- Step 4: Special Gift -->
-                                        <div class="tab-pane fade" id="mc-step-4" role="tabpanel">
+                                        <!-- Step 3: Special Bonus Gift Offer -->
+                                        <div class="tab-pane fade" id="mc-step-3" role="tabpanel">
                                             <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-4">
-                                                <h5 class="fw-bold text-dark m-0"><span class="badge bg-primary me-2">Step 4</span> Special Bonus Gift Offer</h5>
-                                                <span class="text-muted small">Controls free bonus gift banner</span>
+                                                <h5 class="fw-bold text-dark m-0"><span class="badge bg-primary me-2">Step 3</span> Special Bonus Gift Offer Section</h5>
+                                                <span class="text-muted small">Controls free bonus gift banner card</span>
                                             </div>
 
                                             <div class="row gx-20">
@@ -1451,16 +1416,16 @@
                                             </div>
 
                                             <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
-                                                <button type="button" class="btn sg-btn-outline-primary mc-step-btn" data-bs-target="#pills-mc-step-3-tab">< Back</button>
-                                                <button type="button" class="btn sg-btn-primary mc-step-btn" data-bs-target="#pills-mc-step-5-tab">Save & Next ></button>
+                                                <button type="button" class="btn sg-btn-outline-primary mc-step-btn" data-bs-target="#pills-mc-step-2-tab">< Back</button>
+                                                <button type="button" class="btn sg-btn-primary mc-step-btn" data-bs-target="#pills-mc-step-4-tab">Save & Next ></button>
                                             </div>
                                         </div>
 
-                                        <!-- Step 5: Schedule & Progress -->
-                                        <div class="tab-pane fade" id="mc-step-5" role="tabpanel">
+                                        <!-- Step 4: Schedule & Explainer Box -->
+                                        <div class="tab-pane fade" id="mc-step-4" role="tabpanel">
                                             <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-4">
-                                                <h5 class="fw-bold text-dark m-0"><span class="badge bg-primary me-2">Step 5</span> Schedule & Seat Progress</h5>
-                                                <span class="text-muted small">Controls live timing & seats urgency</span>
+                                                <h5 class="fw-bold text-dark m-0"><span class="badge bg-primary me-2">Step 4</span> Live Schedule & Token Fee Explainer Box</h5>
+                                                <span class="text-muted small">Controls schedule banner & "৯৯ টাকায় কেন?" box</span>
                                             </div>
 
                                             <div class="row gx-20">
@@ -1471,7 +1436,7 @@
                                                 </div>
 
                                                 <div class="col-lg-6 col-md-6 mb-4">
-                                                    <label class="form-label fw-bold">Live Schedule Start Time / Date</label>
+                                                    <label class="form-label fw-bold">Live Schedule Subtitle / Start Time</label>
                                                     <input type="text" name="masterclass_settings[class_schedule_time]" class="form-control rounded-2"
                                                            value="{{ $mcSettings['class_schedule_time'] ?? '' }}" placeholder="৬ আগস্ট তারিখ রাত ৮ টায় শুরু">
                                                 </div>
@@ -1482,23 +1447,8 @@
                                                            value="{{ $mcSettings['remaining_seats'] ?? '' }}" placeholder="৭২">
                                                     <small class="text-muted">Text/number displayed in remaining seats counter.</small>
                                                 </div>
-                                            </div>
 
-                                            <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
-                                                <button type="button" class="btn sg-btn-outline-primary mc-step-btn" data-bs-target="#pills-mc-step-4-tab">< Back</button>
-                                                <button type="button" class="btn sg-btn-primary mc-step-btn" data-bs-target="#pills-mc-step-6-tab">Save & Next ></button>
-                                            </div>
-                                        </div>
-
-                                        <!-- Step 6: Explainer Box -->
-                                        <div class="tab-pane fade" id="mc-step-6" role="tabpanel">
-                                            <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-4">
-                                                <h5 class="fw-bold text-dark m-0"><span class="badge bg-primary me-2">Step 6</span> Token Fee Explainer Box</h5>
-                                                <span class="text-muted small">Controls "এত কিছু, মাত্র ৯৯ টাকায় কেন?"</span>
-                                            </div>
-
-                                            <div class="row gx-20">
-                                                <div class="col-12 mb-4">
+                                                <div class="col-12 mb-3">
                                                     <div class="form-check">
                                                         <input type="checkbox" name="masterclass_settings[hide_explainer]" value="1" class="form-check-input" id="hide_exp"
                                                             {{ !empty($mcSettings['hide_explainer']) ? 'checked' : '' }}>
@@ -1519,16 +1469,16 @@
                                             </div>
 
                                             <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
-                                                <button type="button" class="btn sg-btn-outline-primary mc-step-btn" data-bs-target="#pills-mc-step-5-tab">< Back</button>
-                                                <button type="button" class="btn sg-btn-primary mc-step-btn" data-bs-target="#pills-mc-step-7-tab">Save & Next ></button>
+                                                <button type="button" class="btn sg-btn-outline-primary mc-step-btn" data-bs-target="#pills-mc-step-3-tab">< Back</button>
+                                                <button type="button" class="btn sg-btn-primary mc-step-btn" data-bs-target="#pills-mc-step-5-tab">Save & Next ></button>
                                             </div>
                                         </div>
 
-                                        <!-- Step 7: Breakdown Table -->
-                                        <div class="tab-pane fade" id="mc-step-7" role="tabpanel">
+                                        <!-- Step 5: Price Breakdown & Order Form -->
+                                        <div class="tab-pane fade" id="mc-step-5" role="tabpanel">
                                             <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-4">
-                                                <h5 class="fw-bold text-dark m-0"><span class="badge bg-primary me-2">Step 7</span> Price Breakdown Table</h5>
-                                                <span class="text-muted small">Controls bonus items breakdown list</span>
+                                                <h5 class="fw-bold text-dark m-0"><span class="badge bg-primary me-2">Step 5</span> Price Breakdown Table & Registration Order Form</h5>
+                                                <span class="text-muted small">Controls price breakdown list & order form titles</span>
                                             </div>
 
                                             <div class="row gx-20">
@@ -1546,56 +1496,7 @@
                                                               placeholder="🎓 ২ দিনের live masterclass — সম্পূর্ণ roadmap সহ | ৳৩,০০০&#10;🎁 Ecom Dropshipping Mastery Course free পাওয়ার সুযোগ | ৳১০,০০০">{{ $mcSettings['breakdown_items'] ?? '' }}</textarea>
                                                     <small class="text-muted">Enter one item per line using pipe separator: <code>Item Title | Price Value</code></small>
                                                 </div>
-                                            </div>
 
-                                            <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
-                                                <button type="button" class="btn sg-btn-outline-primary mc-step-btn" data-bs-target="#pills-mc-step-6-tab">< Back</button>
-                                                <button type="button" class="btn sg-btn-primary mc-step-btn" data-bs-target="#pills-mc-step-8-tab">Save & Next ></button>
-                                            </div>
-                                        </div>
-
-                                        <!-- Step 8: Course Description -->
-                                        <div class="tab-pane fade" id="mc-step-8" role="tabpanel">
-                                            <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-4">
-                                                <h5 class="fw-bold text-dark m-0"><span class="badge bg-primary me-2">Step 8</span> Full Course Description</h5>
-                                                <span class="text-muted small">Controls "about_this_course" section</span>
-                                            </div>
-
-                                            <div class="alert alert-info mb-0">
-                                                <i class="fas fa-info-circle me-1"></i> Full Course Description is edited using the WYSIWYG editor in <strong>Step 1 (Basic Information)</strong>. Click <strong>"Save & Next"</strong> to proceed.
-                                            </div>
-
-                                            <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
-                                                <button type="button" class="btn sg-btn-outline-primary mc-step-btn" data-bs-target="#pills-mc-step-7-tab">< Back</button>
-                                                <button type="button" class="btn sg-btn-primary mc-step-btn" data-bs-target="#pills-mc-step-9-tab">Save & Next ></button>
-                                            </div>
-                                        </div>
-
-                                        <!-- Step 9: Curriculum -->
-                                        <div class="tab-pane fade" id="mc-step-9" role="tabpanel">
-                                            <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-4">
-                                                <h5 class="fw-bold text-dark m-0"><span class="badge bg-primary me-2">Step 9</span> Course Curriculum Accordion</h5>
-                                                <span class="text-muted small">Controls syllabus & modules list</span>
-                                            </div>
-
-                                            <div class="alert alert-info mb-0">
-                                                <i class="fas fa-info-circle me-1"></i> Course Curriculum sections & lessons are managed dynamically in <strong>Step 5 (Curriculum)</strong> tab. Click <strong>"Save & Next"</strong> to proceed.
-                                            </div>
-
-                                            <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
-                                                <button type="button" class="btn sg-btn-outline-primary mc-step-btn" data-bs-target="#pills-mc-step-8-tab">< Back</button>
-                                                <button type="button" class="btn sg-btn-primary mc-step-btn" data-bs-target="#pills-mc-step-10-tab">Save & Next ></button>
-                                            </div>
-                                        </div>
-
-                                        <!-- Step 10: Registration Order Form -->
-                                        <div class="tab-pane fade" id="mc-step-10" role="tabpanel">
-                                            <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-4">
-                                                <h5 class="fw-bold text-dark m-0"><span class="badge bg-primary me-2">Step 10</span> Registration Order Form Section</h5>
-                                                <span class="text-muted small">Controls order form headline</span>
-                                            </div>
-
-                                            <div class="row gx-20">
                                                 <div class="col-lg-6 col-md-6 mb-4">
                                                     <label class="form-label fw-bold">Registration Form Title</label>
                                                     <input type="text" name="masterclass_settings[order_form_title]" class="form-control rounded-2"
@@ -1610,16 +1511,16 @@
                                             </div>
 
                                             <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
-                                                <button type="button" class="btn sg-btn-outline-primary mc-step-btn" data-bs-target="#pills-mc-step-9-tab">< Back</button>
-                                                <button type="button" class="btn sg-btn-primary mc-step-btn" data-bs-target="#pills-mc-step-11-tab">Save & Next ></button>
+                                                <button type="button" class="btn sg-btn-outline-primary mc-step-btn" data-bs-target="#pills-mc-step-4-tab">< Back</button>
+                                                <button type="button" class="btn sg-btn-primary mc-step-btn" data-bs-target="#pills-mc-step-6-tab">Save & Next ></button>
                                             </div>
                                         </div>
 
-                                        <!-- Step 11: FAQ Accordion -->
-                                        <div class="tab-pane fade" id="mc-step-11" role="tabpanel">
+                                        <!-- Step 6: FAQs & Page Visibility Settings -->
+                                        <div class="tab-pane fade" id="mc-step-6" role="tabpanel">
                                             <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-4">
-                                                <h5 class="fw-bold text-dark m-0"><span class="badge bg-primary me-2">Step 11</span> FAQ Section Customization</h5>
-                                                <span class="text-muted small">Controls FAQ headline & accordion</span>
+                                                <h5 class="fw-bold text-dark m-0"><span class="badge bg-primary me-2">Step 6</span> FAQ Customization & Page Visibility Settings</h5>
+                                                <span class="text-muted small">Controls FAQs and section visibility toggles</span>
                                             </div>
 
                                             <div class="row gx-20">
@@ -1629,51 +1530,22 @@
                                                            value="{{ $mcSettings['faq_title'] ?? '' }}" placeholder="কিছু সাধারণ প্রশ্নের উত্তর">
                                                 </div>
 
-                                                <div class="col-12">
-                                                    <div class="alert alert-info py-2 fs-7 m-0">
-                                                        <i class="fas fa-info-circle me-1"></i> FAQ Questions & Answers items are managed in <strong>Step 8/9 (FAQ Tab)</strong>.
-                                                    </div>
+                                                <div class="col-lg-12 col-md-12 mb-4">
+                                                    <label class="form-label fw-bold">Custom FAQ Items (Question | Answer per line)</label>
+                                                    <textarea name="masterclass_settings[faq_items]" class="form-control rounded-2" rows="5"
+                                                              placeholder="লাইভ ক্লাসে কিভাবে যুক্ত হবো? | আপনি পেমেন্ট করার পর আপনাকে জুম লিংক দেওয়া হবে">{{ $mcSettings['faq_items'] ?? '' }}</textarea>
+                                                    <small class="text-muted">Enter each FAQ as Question | Answer on a new line. Leave empty to use default masterclass FAQs.</small>
                                                 </div>
-                                            </div>
 
-                                            <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
-                                                <button type="button" class="btn sg-btn-outline-primary mc-step-btn" data-bs-target="#pills-mc-step-10-tab">< Back</button>
-                                                <button type="button" class="btn sg-btn-primary mc-step-btn" data-bs-target="#pills-mc-step-12-tab">Save & Next ></button>
-                                            </div>
-                                        </div>
-
-                                        <!-- Step 12: Reviews -->
-                                        <div class="tab-pane fade" id="mc-step-12" role="tabpanel">
-                                            <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-4">
-                                                <h5 class="fw-bold text-dark m-0"><span class="badge bg-primary me-2">Step 12</span> Reviews & Ratings Section</h5>
-                                                <span class="text-muted small">Controls reviews visibility</span>
-                                            </div>
-
-                                            <div class="row gx-20">
-                                                <div class="col-12 mb-4">
+                                                <div class="col-lg-6 col-md-6 mb-4">
                                                     <div class="form-check">
                                                         <input type="checkbox" name="masterclass_settings[hide_reviews]" value="1" class="form-check-input" id="hide_rev"
                                                             {{ !empty($mcSettings['hide_reviews']) ? 'checked' : '' }}>
                                                         <label class="form-check-label fw-bold" for="hide_rev">Hide Reviews Section from Landing Page</label>
                                                     </div>
                                                 </div>
-                                            </div>
 
-                                            <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
-                                                <button type="button" class="btn sg-btn-outline-primary mc-step-btn" data-bs-target="#pills-mc-step-11-tab">< Back</button>
-                                                <button type="button" class="btn sg-btn-primary mc-step-btn" data-bs-target="#pills-mc-step-13-tab">Save & Next ></button>
-                                            </div>
-                                        </div>
-
-                                        <!-- Step 13: Related Courses -->
-                                        <div class="tab-pane fade" id="mc-step-13" role="tabpanel">
-                                            <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-4">
-                                                <h5 class="fw-bold text-dark m-0"><span class="badge bg-primary me-2">Step 13</span> Related Courses Section</h5>
-                                                <span class="text-muted small">Controls related courses footer grid</span>
-                                            </div>
-
-                                            <div class="row gx-20">
-                                                <div class="col-12 mb-4">
+                                                <div class="col-lg-6 col-md-6 mb-4">
                                                     <div class="form-check">
                                                         <input type="checkbox" name="masterclass_settings[hide_related_courses]" value="1" class="form-check-input" id="hide_rel"
                                                             {{ !empty($mcSettings['hide_related_courses']) ? 'checked' : '' }}>
@@ -1683,7 +1555,7 @@
                                             </div>
 
                                             <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
-                                                <button type="button" class="btn sg-btn-outline-primary mc-step-btn" data-bs-target="#pills-mc-step-12-tab">< Back</button>
+                                                <button type="button" class="btn sg-btn-outline-primary mc-step-btn" data-bs-target="#pills-mc-step-5-tab">< Back</button>
                                                 <div class="d-flex align-items-center gap-2">
                                                     <button type="submit" class="btn sg-btn-primary"><i class="fas fa-check-circle me-1"></i> {{ __('update') }}</button>
                                                     <button type="submit" name="save_and_published" value="1" class="btn sg-btn-primary">{{ __('save_&_publish') }}</button>
