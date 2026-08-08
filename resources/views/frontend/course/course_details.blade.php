@@ -6,6 +6,54 @@
     <link rel="stylesheet" href="{{ static_asset('frontend/css/masterclass.css') }}">
 @endpush
 
+@php
+    $mcSettings = $course->masterclass_settings ?? [];
+    $eyebrowTitle = !empty($mcSettings['eyebrow_title']) ? $mcSettings['eyebrow_title'] : ($category ? $category->lang_title : 'E-commerce শুরু করার hidden path');
+    $classScheduleTitle = !empty($mcSettings['class_schedule_title']) ? $mcSettings['class_schedule_title'] : '২ দিনব্যাপী e-commerce live masterclass';
+    $classScheduleTime = !empty($mcSettings['class_schedule_time']) ? $mcSettings['class_schedule_time'] : '৬ আগস্ট তারিখ রাত ৮ টায় শুরু';
+    
+    $totalCapacity = $course->capacity > 0 ? $course->capacity : 500;
+    $totalEnrolled = $course->total_enrolled > 0 ? $course->total_enrolled : 428;
+    $remainingSeats = !empty($mcSettings['remaining_seats']) ? $mcSettings['remaining_seats'] : max(0, $totalCapacity - $totalEnrolled);
+    $progressPercent = min(100, round(($totalEnrolled / max(1, $totalCapacity)) * 100, 1));
+
+    $benefitsTitle = !empty($mcSettings['benefits_title']) ? $mcSettings['benefits_title'] : 'এই মাস্টারক্লাস কার জন্য?';
+    $orderFormTitle = !empty($mcSettings['order_form_title']) ? $mcSettings['order_form_title'] : 'মাস্টারক্লাসে জয়েন করতে নিচের<br><span class="text-primary">ফর্মটি পূরণ করুন</span>';
+    $faqTitle = !empty($mcSettings['faq_title']) ? $mcSettings['faq_title'] : 'কিছু সাধারণ প্রশ্নের উত্তর';
+
+    $hideSpecialGift = !empty($mcSettings['hide_special_gift']);
+    $hideExplainer = !empty($mcSettings['hide_explainer']);
+    $hideBreakdown = !empty($mcSettings['hide_breakdown']);
+
+    $giftBadge = !empty($mcSettings['gift_badge']) ? $mcSettings['gift_badge'] : '🎁 যারা join করবেন তাদের জন্য special gift';
+    $giftTitle = !empty($mcSettings['gift_title']) ? $mcSettings['gift_title'] : '৳১০,০০০ টাকার Ecom Dropshipping Mastery Course — সম্পূর্ণ FREE করার সুযোগ';
+    $giftValue = !empty($mcSettings['gift_value']) ? $mcSettings['gift_value'] : '৳১০,০০০';
+    $giftDescription = !empty($mcSettings['gift_description']) ? $mcSettings['gift_description'] : 'এই master class-এ যারা join করবেন, তারা আমার ৳১০,০০০ টাকার Ecom Dropshipping Mastery Course টা free তে করার সুযোগ পাবেন। মাস্টারক্লাসে এই বিষয়ে বিস্তারিত আলোচনা।';
+    $giftQuote = !empty($mcSettings['gift_quote']) ? $mcSettings['gift_quote'] : '"এই কোর্সে আমি ই-কমার্স বিজনেস, ডিজিটাল মার্কেটিং এর বিভিন্ন বিষয় যেমন Facebook Ads, Google Ads নিয়ে বিস্তারিত শিখিয়েছি। এছাড়াও কিভাবে একটা বিজনেসকে Scale করতে তা নিয়ে ক্লাস আছে।"';
+
+    $explainerTitle = !empty($mcSettings['explainer_title']) ? $mcSettings['explainer_title'] : 'একটা প্রশ্ন আপনার মাথায় আসতে পারে — এত কিছু, মাত্র ৯৯ টাকায় কেন??';
+    $explainerText = !empty($mcSettings['explainer_text']) ? $mcSettings['explainer_text'] : null;
+    $breakdownItemsRaw = !empty($mcSettings['breakdown_items']) ? $mcSettings['breakdown_items'] : null;
+
+    $breakdownRows = [];
+    if (!empty($breakdownItemsRaw)) {
+        $lines = array_filter(array_map('trim', explode("\n", $breakdownItemsRaw)));
+        foreach ($lines as $line) {
+            $parts = explode('|', $line);
+            $breakdownRows[] = [
+                'title' => trim($parts[0] ?? ''),
+                'val' => trim($parts[1] ?? '')
+            ];
+        }
+    }
+    if (empty($breakdownRows)) {
+        $breakdownRows = [
+            ['title' => '🎓 ২ দিনের live masterclass — সম্পূর্ণ roadmap সহ', 'val' => '৳৩,০০০'],
+            ['title' => '🎁 Ecom Dropshipping Mastery Course free পাওয়ার সুযোগ', 'val' => '৳১০,০০০']
+        ];
+    }
+@endphp
+
 <div class="masterclass-page-wrapper">
 
     {{-- =========================================================
@@ -14,11 +62,7 @@
     ========================================================== --}}
     <section class="mc-hero-header">
         <div class="mc-container">
-            @if($category)
-                <span class="mc-eyebrow-badge">{{ $category->lang_title }}</span>
-            @else
-                <span class="mc-eyebrow-badge">E-commerce শুরু করার hidden path</span>
-            @endif
+            <span class="mc-eyebrow-badge">{{ $eyebrowTitle }}</span>
 
             {{-- Main Title --}}
             <h1 class="mc-main-title">{{ $course->title }}</h1>
@@ -69,7 +113,7 @@
 
                 <div class="mc-seats-counter">
                     <span class="mc-pulse-dot"><span class="ping"></span><span class="dot"></span></span>
-                    <span>আর মাত্র <strong class="text-danger fw-bold">৭২ সিট বাকি</strong></span>
+                    <span>আর মাত্র <strong class="text-danger fw-bold">{{ $remainingSeats }} সিট বাকি</strong></span>
                 </div>
             @endif
         </div>
@@ -163,7 +207,7 @@
                             </a>
                             <div class="mc-seats-counter mt-3">
                                 <span class="mc-pulse-dot"><span class="ping"></span><span class="dot"></span></span>
-                                <span>আর মাত্র <strong class="text-danger fw-bold">৭২ সিট বাকি</strong></span>
+                                <span>আর মাত্র <strong class="text-danger fw-bold">{{ $remainingSeats }} সিট বাকি</strong></span>
                             </div>
                         </div>
                     @endif
@@ -175,15 +219,14 @@
                  Field: $course->what_will_learn (From Admin Course Edit)
             ========================================================== --}}
             <div class="mc-benefits-card-wrapper">
-                <h2 class="fw-bold fs-3 text-dark mb-2">এই মাস্টারক্লাস কার জন্য?</h2>
+                <h2 class="fw-bold fs-3 text-dark mb-2">{{ $benefitsTitle }}</h2>
                 <span class="d-block mx-auto mb-4" style="width: 70px; height: 3px; background: #fdcc0d; border-radius: 10px;"></span>
 
                 <div class="row g-3">
                     @php
                         $benefits = [];
                         if(!empty($course->what_will_learn)) {
-                            $lines = array_filter(array_map('trim', explode("
-", strip_tags($course->what_will_learn))));
+                            $lines = array_filter(array_map('trim', explode("\n", strip_tags($course->what_will_learn))));
                             $benefits = array_values($lines);
                         }
                         if(count($benefits) < 1) {
@@ -210,110 +253,121 @@
             {{-- =========================================================
                  6. SPECIAL GIFT BANNER CARD
             ========================================================== --}}
-            <div class="mc-special-gift-card">
-                <span class="mc-gift-pill">
-                    🎁 যারা join করবেন তাদের জন্য special gift
-                </span>
+            @if(!$hideSpecialGift)
+                <div class="mc-special-gift-card">
+                    <span class="mc-gift-pill">
+                        {{ $giftBadge }}
+                    </span>
 
-                <h2 class="fw-bold fs-3 text-dark mb-3">
-                    ৳১০,০০০ টাকার Ecom Dropshipping Mastery Course — সম্পূর্ণ FREE করার সুযোগ
-                </h2>
+                    <h2 class="fw-bold fs-3 text-dark mb-3">
+                        {{ $giftTitle }}
+                    </h2>
 
-                <div class="d-flex align-items-center gap-3 mb-3">
-                    <span class="fs-5 text-muted text-decoration-line-through">৳১০,০০০</span>
-                    <span class="badge bg-danger fs-6 px-3 py-2 rounded-pill">FREE</span>
-                </div>
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                        <span class="fs-5 text-muted text-decoration-line-through">{{ $giftValue }}</span>
+                        <span class="badge bg-danger fs-6 px-3 py-2 rounded-pill">FREE</span>
+                    </div>
 
-                <p class="text-secondary leading-relaxed fs-6">
-                    এই master class-এ যারা join করবেন, তারা আমার ৳১০,০০০ টাকার Ecom Dropshipping Mastery Course টা free তে করার সুযোগ পাবেন। মাস্টারক্লাসে এই বিষয়ে বিস্তারিত আলোচনা।
-                </p>
+                    <p class="text-secondary leading-relaxed fs-6">
+                        {{ $giftDescription }}
+                    </p>
 
-                <div class="mc-callout-quote">
-                    "এই কোর্সে আমি ই-কমার্স বিজনেস, ডিজিটাল মার্কেটিং এর বিভিন্ন বিষয় যেমন Facebook Ads, Google Ads নিয়ে বিস্তারিত শিখিয়েছি। এছাড়াও কিভাবে একটা বিজনেসকে Scale করতে তা নিয়ে ক্লাস আছে।"
-                </div>
+                    <div class="mc-callout-quote">
+                        {{ $giftQuote }}
+                    </div>
 
-                <p class="small text-muted mb-4">
-                    যারা একদম নতুন আছেন তারাও এই কোর্স থেকে বেনিফিটেড হতে পারবে।
-                </p>
+                    <p class="small text-muted mb-4">
+                        যারা একদম নতুন আছেন তারাও এই কোর্স থেকে বেনিফিটেড হতে পারবে।
+                    </p>
 
-                <div class="text-center">
-                    <a href="#register" class="mc-red-badge-btn">
-                        সিট কনফার্ম করুন →
-                    </a>
-                    <div class="mc-seats-counter mt-3">
-                        <span class="mc-pulse-dot"><span class="ping"></span><span class="dot"></span></span>
-                        <span>বাকি আছে মাত্র <strong class="text-warning fw-bold">৭২</strong> টা seat</span>
+                    <div class="text-center">
+                        <a href="#register" class="mc-red-badge-btn">
+                            সিট কনফার্ম করুন →
+                        </a>
+                        <div class="mc-seats-counter mt-3">
+                            <span class="mc-pulse-dot"><span class="ping"></span><span class="dot"></span></span>
+                            <span>বাকি আছে মাত্র <strong class="text-warning fw-bold">{{ $remainingSeats }}</strong> টা seat</span>
+                        </div>
                     </div>
                 </div>
-            </div>
+            @endif
 
             {{-- =========================================================
                  7. LIVE ZOOM EXPLAINER & SEATS PROGRESS
             ========================================================== --}}
             <div class="text-center mb-4">
                 <span class="badge bg-primary px-3 py-2 rounded-pill fs-7 tracking-wider">LIVE ZOOM MASTERCLASS</span>
-                <h2 class="fw-bold fs-3 text-dark mt-3">২ দিনব্যাপী e-commerce live masterclass</h2>
+                <h2 class="fw-bold fs-3 text-dark mt-3">{{ $classScheduleTitle }}</h2>
                 <p class="text-secondary">
-                    ৬ আগস্ট তারিখ রাত ৮ টায় শুরু। Seat সীমিত — বাকি আছে মাত্র <strong class="text-warning fw-bold">৭২</strong> টা।
+                    {{ $classScheduleTime }}। Seat সীমিত — বাকি আছে মাত্র <strong class="text-warning fw-bold">{{ $remainingSeats }}</strong> টা।
                 </p>
             </div>
 
             {{-- Progress Bar --}}
             <div class="mc-progress-box">
                 <p class="fw-bold m-0 text-dark">
-                    ৫০০ seat-এর মধ্যে <span class="text-primary">৪২৮</span>টা বুক হয়ে গেছে — বাকি মাত্র <strong class="text-danger">৭২টা</strong>
+                    {{ $totalCapacity }} seat-এর মধ্যে <span class="text-primary">{{ $totalEnrolled }}</span>টা বুক হয়ে গেছে — বাকি মাত্র <strong class="text-danger">{{ $remainingSeats }}টা</strong>
                 </p>
                 <div class="mc-progress-bar-bg">
-                    <div class="mc-progress-bar-fill" style="width: 85.6%;"></div>
+                    <div class="mc-progress-bar-fill" style="width: {{ $progressPercent }}%;"></div>
                 </div>
                 <div class="d-flex justify-content-between small text-muted">
-                    <span>বুক হয়েছে ৪২৮</span>
-                    <span>মোট ৫০০ seat</span>
+                    <span>বুক হয়েছে {{ $totalEnrolled }}</span>
+                    <span>মোট {{ $totalCapacity }} seat</span>
                 </div>
             </div>
 
             {{-- Blue Explainer Box --}}
-            <div class="mc-blue-explainer">
-                <h3 class="fw-bold fs-5 text-dark mb-3">একটা প্রশ্ন আপনার মাথায় আসতে পারে — এত কিছু, মাত্র ৯৯ টাকায় কেন??</h3>
-                <p>টু বি অনেস্ট, আমি এই masterclass-টা সম্পূর্ণ free করাতে চেয়েছিলাম।</p>
-                <p>কিন্তু problem হচ্ছে — আমার free session-গুলোতে দেখা যায় কয়েক হাজার মানুষ register করে বা join করে। যেহেতু এই session-টা Zoom-এ live হবে, তাই আমি চাইলেও এখানে বেশি মানুষ নিতে পারব না। Seat limit থাকবে।</p>
-                <p>তাই আমি এখানে ছোট্ট একটা token amount রেখেছি — শুধু audience filter করার জন্য। যেন এই masterclass-এ তারাই join করে, যারা সত্যিই e-commerce business শুরু করার ব্যাপারে serious এবং step-by-step process-টা মনোযোগ দিয়ে শিখতে ready।</p>
-                <p>যদি এই masterclass-এর actual value অনুযায়ী charge করা হতো, তাহলে এর price কয়েক হাজার টাকা হওয়া উচিত ছিল। কিন্তু আমার goal এখানে টাকা নেওয়া না।</p>
-                <p class="fw-bold text-primary m-0">goal হচ্ছে serious মানুষগুলোকে একটা clear guideline দেওয়া।।</p>
-            </div>
+            @if(!$hideExplainer)
+                <div class="mc-blue-explainer">
+                    <h3 class="fw-bold fs-5 text-dark mb-3">{{ $explainerTitle }}</h3>
+                    @if($explainerText)
+                        {!! $explainerText !!}
+                    @else
+                        <p>টু বি অনেস্ট, আমি এই masterclass-টা সম্পূর্ণ free করাতে চেয়েছিলাম।</p>
+                        <p>কিন্তু problem হচ্ছে — আমার free session-গুলোতে দেখা যায় কয়েক হাজার মানুষ register করে বা join করে। যেহেতু এই session-টা Zoom-এ live হবে, তাই আমি চাইলেও এখানে বেশি মানুষ নিতে পারব না। Seat limit থাকবে।</p>
+                        <p>তাই আমি এখানে ছোট্ট একটা token amount রেখেছি — শুধু audience filter করার জন্য। যেন এই masterclass-এ তারাই join করে, যারা সত্যিই e-commerce business শুরু করার ব্যাপারে serious এবং step-by-step process-টা মনোযোগ দিয়ে শিখতে ready।</p>
+                        <p>যদি এই masterclass-এর actual value অনুযায়ী charge করা হতো, তাহলে এর price কয়েক হাজার টাকা হওয়া উচিত ছিল। কিন্তু আমার goal এখানে টাকা নেওয়া না।</p>
+                        <p class="fw-bold text-primary m-0">goal হচ্ছে serious মানুষগুলোকে একটা clear guideline দেওয়া।।</p>
+                    @endif
+                </div>
+            @endif
 
             {{-- Breakdown Table --}}
-            <div class="mc-breakdown-card">
-                <h4 class="fw-bold fs-5 text-dark mb-4">এই ৯৯ টাকায় আপনি পাচ্ছেন:</h4>
-                <div class="table-responsive">
-                    <table class="table align-middle">
-                        <tbody>
-                            <tr>
-                                <td>🎓 ২ দিনের live masterclass — সম্পূর্ণ roadmap সহ</td>
-                                <td class="text-end fw-bold">৳৩,০০০</td>
-                            </tr>
-                            <tr>
-                                <td>🎁 Ecom Dropshipping Mastery Course free পাওয়ার সুযোগ</td>
-                                <td class="text-end fw-bold">৳১০,০০০</td>
-                            </tr>
-                            <tr class="border-top border-2">
-                                <td class="fw-bold">মোট মূল্য</td>
-                                <td class="text-end fw-bold text-decoration-line-through">৳১৩,০০০+</td>
-                            </tr>
-                            <tr class="table-success">
-                                <td class="fw-bold text-success">আজকের মূল্য (token)</td>
-                                <td class="text-end fw-black fs-4 text-success">
-                                    @if($course->is_discountable == 1)
-                                        {{ get_price($course->discount_amount, userCurrency()) }}
-                                    @else
-                                        {{ get_price($course->price, userCurrency()) }}
-                                    @endif
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+            @if(!$hideBreakdown)
+                <div class="mc-breakdown-card">
+                    <h4 class="fw-bold fs-5 text-dark mb-4">এই 
+                        @if($course->is_discountable == 1)
+                            {{ get_price($course->discount_amount, userCurrency()) }}
+                        @else
+                            {{ get_price($course->price, userCurrency()) }}
+                        @endif
+                        টাকায় আপনি পাচ্ছেন:
+                    </h4>
+                    <div class="table-responsive">
+                        <table class="table align-middle">
+                            <tbody>
+                                @foreach($breakdownRows as $row)
+                                    <tr>
+                                        <td>{{ $row['title'] }}</td>
+                                        <td class="text-end fw-bold">{{ $row['val'] }}</td>
+                                    </tr>
+                                @endforeach
+                                <tr class="table-success border-top border-2">
+                                    <td class="fw-bold text-success">আজকের মূল্য (token)</td>
+                                    <td class="text-end fw-black fs-4 text-success">
+                                        @if($course->is_discountable == 1)
+                                            {{ get_price($course->discount_amount, userCurrency()) }}
+                                        @else
+                                            {{ get_price($course->price, userCurrency()) }}
+                                        @endif
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            </div>
+            @endif
 
             {{-- =========================================================
                  8. COURSE FULL DESCRIPTION (100% Admin WYSIWYG Editor Sync)
@@ -416,8 +470,7 @@
                 @if(!$is_enrolled)
                     <div id="register" class="mc-form-wrapper">
                         <h2 class="text-center fw-bold fs-3 text-dark mb-2">
-                            মাস্টারক্লাসে জয়েন করতে নিচের<br>
-                            <span class="text-primary">ফর্মটি পূরণ করুন</span>
+                            {!! $orderFormTitle !!}
                         </h2>
                         
                         <p class="text-center text-muted small mb-4">Give valid information</p>
@@ -475,7 +528,7 @@
             ========================================================== --}}
             @if(setting('hide_faq_from_course_details') != '1')
                 <div class="mb-5">
-                    <h2 class="text-center fw-bold fs-3 text-dark mb-2">কিছু সাধারণ প্রশ্নের উত্তর</h2>
+                    <h2 class="text-center fw-bold fs-3 text-dark mb-2">{{ $faqTitle }}</h2>
                     <span class="d-block mx-auto mb-4" style="width: 70px; height: 3px; background: #fdcc0d; border-radius: 10px;"></span>
 
                     @php

@@ -141,7 +141,13 @@
                                     @endif
                                 </span>
                                 {{-- <span class="default-tab-count num_live">8</span> --}}
-                                {{ __('faq') }}
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link tab_change {{ $request_tab == 'masterclass' ? 'active' : '' }}"
+                               data-tab="masterclass" id="masterclass" data-bs-toggle="pill" data-bs-target="#courseMasterclass"
+                               role="tab" aria-controls="courseMasterclass" aria-selected="false">
+                                <span class="default-tab-count">10</span>
+                                {{ __('Masterclass Landing') }}
                             </a>
                         </li>
                     </ul>
@@ -1211,6 +1217,10 @@
 
 
                                             <div class="d-flex align-items-center gap-3">
+                                                 <a href="#" type="button"
+                                                    class="btn sg-btn-primary btn_action" data-bs-toggle="tab"
+                                                    data-bs-target="#courseMasterclass">{{ __('next') }}</a>
+
                                                 <button type="submit"
                                                         class="btn sg-btn-primary mr-1">{{ __('update') }}</button>
 
@@ -1227,6 +1237,161 @@
                                 </div>
                             </div>
                             <!-- End FAQ Tab -->
+
+                            <!-- Start Masterclass Landing Tab -->
+                            <div class="tab-pane fade {{ $request_tab == 'masterclass' ? 'show active' : '' }}"
+                                 id="courseMasterclass" role="tabpanel" aria-labelledby="masterclass" tabindex="0">
+                                @php
+                                    $mcSettings = $course->masterclass_settings ?? [];
+                                @endphp
+                                <div class="row gx-20">
+                                    <div class="col-12 mb-3">
+                                        <h5 class="fw-bold text-dark border-bottom pb-2">Section Visibility & Headings</h5>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-6 mb-4">
+                                        <label class="form-label fw-bold">Benefits Section Title</label>
+                                        <input type="text" name="masterclass_settings[benefits_title]" class="form-control rounded-2"
+                                               value="{{ $mcSettings['benefits_title'] ?? '' }}" placeholder="এই মাস্টারক্লাস কার জন্য?">
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-6 mb-4">
+                                        <label class="form-label fw-bold">Registration Form Title</label>
+                                        <input type="text" name="masterclass_settings[order_form_title]" class="form-control rounded-2"
+                                               value="{{ $mcSettings['order_form_title'] ?? '' }}" placeholder="মাস্টারক্লাসে জয়েন করতে নিচের ফর্মটি পূরণ করুন">
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-6 mb-4">
+                                        <label class="form-label fw-bold">FAQ Section Title</label>
+                                        <input type="text" name="masterclass_settings[faq_title]" class="form-control rounded-2"
+                                               value="{{ $mcSettings['faq_title'] ?? '' }}" placeholder="কিছু সাধারণ প্রশ্নের উত্তর">
+                                    </div>
+
+                                    <div class="col-12 mb-4">
+                                        <div class="d-flex gap-4 flex-wrap">
+                                            <div class="form-check">
+                                                <input type="checkbox" name="masterclass_settings[hide_special_gift]" value="1" class="form-check-input" id="hide_gift"
+                                                    {{ !empty($mcSettings['hide_special_gift']) ? 'checked' : '' }}>
+                                                <label class="form-check-label fw-bold" for="hide_gift">Hide Special Gift Banner Card</label>
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input type="checkbox" name="masterclass_settings[hide_explainer]" value="1" class="form-check-input" id="hide_exp"
+                                                    {{ !empty($mcSettings['hide_explainer']) ? 'checked' : '' }}>
+                                                <label class="form-check-label fw-bold" for="hide_exp">Hide Token Fee Explainer Box</label>
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input type="checkbox" name="masterclass_settings[hide_breakdown]" value="1" class="form-check-input" id="hide_bd"
+                                                    {{ !empty($mcSettings['hide_breakdown']) ? 'checked' : '' }}>
+                                                <label class="form-check-label fw-bold" for="hide_bd">Hide Price Breakdown Table</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 mb-3 mt-2">
+                                        <h5 class="fw-bold text-dark border-bottom pb-2">Hero Header & Schedule Customization</h5>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 mb-4">
+                                        <label class="form-label fw-bold">Eyebrow Badge Text</label>
+                                        <input type="text" name="masterclass_settings[eyebrow_title]" class="form-control rounded-2"
+                                               value="{{ $mcSettings['eyebrow_title'] ?? '' }}" placeholder="E-commerce শুরু করার hidden path">
+                                        <small class="text-muted">Displayed above the main course title on the landing page.</small>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 mb-4">
+                                        <label class="form-label fw-bold">Live Schedule Headline</label>
+                                        <input type="text" name="masterclass_settings[class_schedule_title]" class="form-control rounded-2"
+                                               value="{{ $mcSettings['class_schedule_title'] ?? '' }}" placeholder="২ দিনব্যাপী e-commerce live masterclass">
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 mb-4">
+                                        <label class="form-label fw-bold">Live Schedule Subtitle / Start Time</label>
+                                        <input type="text" name="masterclass_settings[class_schedule_time]" class="form-control rounded-2"
+                                               value="{{ $mcSettings['class_schedule_time'] ?? '' }}" placeholder="৬ আগস্ট তারিখ রাত ৮ টায় শুরু">
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 mb-4">
+                                        <label class="form-label fw-bold">Urgency Seat Count (Remaining Seats)</label>
+                                        <input type="text" name="masterclass_settings[remaining_seats]" class="form-control rounded-2"
+                                               value="{{ $mcSettings['remaining_seats'] ?? '' }}" placeholder="৭২">
+                                        <small class="text-muted">Text/number displayed in the pulse seat urgency counter.</small>
+                                    </div>
+
+                                    <div class="col-12 mb-3 mt-3">
+                                        <h5 class="fw-bold text-dark border-bottom pb-2">Special Bonus Gift Offer</h5>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 mb-4">
+                                        <label class="form-label fw-bold">Gift Pill / Badge Text</label>
+                                        <input type="text" name="masterclass_settings[gift_badge]" class="form-control rounded-2"
+                                               value="{{ $mcSettings['gift_badge'] ?? '' }}" placeholder="🎁 যারা join করবেন তাদের জন্য special gift">
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 mb-4">
+                                        <label class="form-label fw-bold">Gift Title</label>
+                                        <input type="text" name="masterclass_settings[gift_title]" class="form-control rounded-2"
+                                               value="{{ $mcSettings['gift_title'] ?? '' }}" placeholder="৳১০,০০০ টাকার Ecom Dropshipping Mastery Course — সম্পূর্ণ FREE করার সুযোগ">
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 mb-4">
+                                        <label class="form-label fw-bold">Original Gift Value</label>
+                                        <input type="text" name="masterclass_settings[gift_value]" class="form-control rounded-2"
+                                               value="{{ $mcSettings['gift_value'] ?? '' }}" placeholder="৳১০,০০০">
+                                    </div>
+
+                                    <div class="col-lg-12 col-md-12 mb-4">
+                                        <label class="form-label fw-bold">Gift Description</label>
+                                        <textarea name="masterclass_settings[gift_description]" class="form-control rounded-2" rows="3"
+                                                  placeholder="এই master class-এ যারা join করবেন, তারা আমার ৳১০,০০০ টাকার Ecom Dropshipping Mastery Course টা free তে করার সুযোগ পাবেন...">{{ $mcSettings['gift_description'] ?? '' }}</textarea>
+                                    </div>
+
+                                    <div class="col-lg-12 col-md-12 mb-4">
+                                        <label class="form-label fw-bold">Gift Quote</label>
+                                        <textarea name="masterclass_settings[gift_quote]" class="form-control rounded-2" rows="3"
+                                                  placeholder="এই কোর্সে আমি ই-কমার্স বিজনেস, ডিজিটাল মার্কেটিং এর বিভিন্ন বিষয় যেমন Facebook Ads, Google Ads নিয়ে বিস্তারিত শিখিয়েছি...">{{ $mcSettings['gift_quote'] ?? '' }}</textarea>
+                                    </div>
+
+                                    <div class="col-12 mb-3 mt-3">
+                                        <h5 class="fw-bold text-dark border-bottom pb-2">Token Fee Explainer Section</h5>
+                                    </div>
+
+                                    <div class="col-lg-12 col-md-12 mb-4">
+                                        <label class="form-label fw-bold">Explainer Heading Question</label>
+                                        <input type="text" name="masterclass_settings[explainer_title]" class="form-control rounded-2"
+                                               value="{{ $mcSettings['explainer_title'] ?? '' }}" placeholder="একটা প্রশ্ন আপনার মাথায় আসতে পারে — এত কিছু, মাত্র ৯৯ টাকায় কেন??">
+                                    </div>
+
+                                    <div class="col-lg-12 col-md-12 mb-4">
+                                        <label class="form-label fw-bold">Explainer Content</label>
+                                        <textarea name="masterclass_settings[explainer_text]" class="form-control rounded-2 summernote" rows="5">{{ $mcSettings['explainer_text'] ?? '' }}</textarea>
+                                    </div>
+
+                                    <div class="col-12 mb-3 mt-3">
+                                        <h5 class="fw-bold text-dark border-bottom pb-2">Price Breakdown Table Items</h5>
+                                    </div>
+
+                                    <div class="col-lg-12 col-md-12 mb-4">
+                                        <label class="form-label fw-bold">Breakdown Items (One per line: Item Name | Estimated Value)</label>
+                                        <textarea name="masterclass_settings[breakdown_items]" class="form-control rounded-2" rows="4"
+                                                  placeholder="🎓 ২ দিনের live masterclass — সম্পূর্ণ roadmap সহ | ৳৩,০০০&#10;🎁 Ecom Dropshipping Mastery Course free পাওয়ার সুযোগ | ৳১০,০০০">{{ $mcSettings['breakdown_items'] ?? '' }}</textarea>
+                                        <small class="text-muted">Enter each bonus line in the format: <code>Item Title | Price Value</code></small>
+                                    </div>
+
+                                    <div class="col-lg-12">
+                                        <div class="d-flex justify-content-between align-items-center mt-30">
+                                            <a href="#" type="button" class="btn sg-btn-outline-primary btn_action" data-bs-toggle="tab" data-bs-target="#courseFAQ">{{ __('back') }}</a>
+                                            <div class="d-flex align-items-center gap-3">
+                                                <button type="submit" class="btn sg-btn-primary mr-1">{{ __('update') }}</button>
+                                                <button type="submit" name="save_and_published" value="1" class="btn sg-btn-primary">{{ __('save_&_publish') }}</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- End Masterclass Landing Tab -->
                         </div>
                     </form>
                 </div>
