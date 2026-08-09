@@ -91,11 +91,17 @@ class CourseRepository
         }
 
         if (arrayCheck('image_media_id', $request)) {
-            $request['image'] = $this->getImageWithRecommendedSize($request['image_media_id'], '402', '248', true);
+            $img = $this->getImageWithRecommendedSize($request['image_media_id'], '402', '248', true);
+            if ($img && is_array($img)) {
+                $request['image'] = $img;
+            }
         }
 
         if (arrayCheck('faq_image_media_id', $request)) {
-            $request['faq_image'] = $this->getImageWithRecommendedSize($request['faq_image_media_id'], '800', '600', true);
+            $faqImg = $this->getImageWithRecommendedSize($request['faq_image_media_id'], '800', '600', true);
+            if ($faqImg && is_array($faqImg)) {
+                $request['faq_image'] = $faqImg;
+            }
         }
 
         if (! arrayCheck('meta_title', $request) && arrayCheck('title', $request)) {
@@ -111,15 +117,18 @@ class CourseRepository
         }
 
         if (arrayCheck('meta_image', $request)) {
-            $request['meta_image'] = $this->getImageWithRecommendedSize($request['meta_image'], '1200', '630', true);
-        } else {
-            $request['meta_image'] = getArrayValue('image', $request);
+            $metaImg = $this->getImageWithRecommendedSize($request['meta_image'], '1200', '630', true);
+            if ($metaImg && is_array($metaImg)) {
+                $request['meta_image'] = $metaImg;
+            }
+        } elseif (arrayCheck('image', $request) && is_array($request['image'])) {
+            $request['meta_image'] = $request['image'];
         }
 
         if (arrayCheck('video_source', $request) && arrayCheck('video', $request) && $request['video_source'] == 'upload') {
             $request['video'] = $this->saveFile($request['video'], 'pos_file', false);
         }
-        if (arrayCheck('video_source', $request) && $request['video_source'] != 'upload') {
+        if (arrayCheck('video_source', $request) && $request['video_source'] != 'upload' && arrayCheck('video_link', $request)) {
             $request['video'] = $request['video_link'];
         }
 
@@ -130,7 +139,7 @@ class CourseRepository
         }
         if (arrayCheck('is_free', $request) && $request['is_free'] == 1) {
             $request['price'] = 0;
-        } else {
+        } elseif (arrayCheck('price', $request)) {
             $request['price'] = priceFormatUpdate($request['price'], setting('default_currency'));
         }
 
@@ -142,7 +151,9 @@ class CourseRepository
             $request['is_published'] = 1;
         }
 
-        $course->users()->sync($request['instructor_ids']);
+        if (arrayCheck('instructor_ids', $request)) {
+            $course->users()->sync($request['instructor_ids']);
+        }
 
         $request['is_discountable'] = arrayCheck('is_discountable', $request) ? $request['is_discountable'] : '0';
         $request['is_free']         = arrayCheck('is_free', $request) ? $request['is_free'] : '0';

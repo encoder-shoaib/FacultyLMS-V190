@@ -124,15 +124,15 @@
             @if(!auth()->check() || auth()->user()->user_type == 'student')
                 <div class="cart_area text-center mb-3">
                     @if($is_enrolled)
-                        <a href="{{ route('my-course', $course->slug) }}" class="mc-btn-primary-cta">
+                        <a href="{{ route('my-course', $course->slug) }}" class="template-btn">
                             {{ __('go_to_course') }} <i class="fal fa-long-arrow-right ms-2"></i>
                         </a>
                     @else
-                        <a href="javascript:void(0)" class="mc-btn-primary-cta added_to_cart {{ $is_added_to_cart ? '' : 'd-none' }}">
+                        <a href="javascript:void(0)" class="template-btn added_to_cart {{ $is_added_to_cart ? '' : 'd-none' }}">
                             {{ __('added_to_cart') }} <i class="fas fa-check-circle ms-1"></i>
                         </a>
                         <a href="javascript:void(0)" 
-                           class="mc-btn-primary-cta add_to_cart {{ $is_added_to_cart ? 'd-none' : '' }}" 
+                           class="template-btn add_to_cart {{ $is_added_to_cart ? 'd-none' : '' }}" 
                            data-id="{{ $course->id }}" 
                            data-type="course" 
                            data-quantity="1" 
@@ -142,7 +142,7 @@
                     @endif
                 </div>
                 
-                @include('components.frontend_loading_btn', ['class' => 'mc-btn-primary-cta d-none'])
+                @include('components.frontend_loading_btn', ['class' => 'template-btn d-none'])
 
                 <div class="mc-seats-counter">
                     <span class="mc-pulse-dot"><span class="ping"></span><span class="dot"></span></span>
@@ -223,16 +223,14 @@
                 @if(!auth()->check() || auth()->user()->user_type == 'student')
                     @if(!$is_enrolled)
                         <div class="text-center mt-4">
-                            <a href="#register" class="mc-dual-btn">
-                                <span class="mc-dual-left">{{ $goldCtaText }}</span>
-                                <span class="mc-dual-right">
-                                    @if($course->is_discountable == 1)
-                                        {{ get_price($course->discount_amount, userCurrency()) }}
-                                    @else
-                                        {{ get_price($course->price, userCurrency()) }}
-                                    @endif
-                                    <i class="fas fa-arrow-right ms-1"></i>
-                                </span>
+                            <a href="#register" class="template-btn">
+                                {{ $goldCtaText }} - 
+                                @if($course->is_discountable == 1)
+                                    {{ get_price($course->discount_amount, userCurrency()) }}
+                                @else
+                                    {{ get_price($course->price, userCurrency()) }}
+                                @endif
+                                <i class="fas fa-arrow-right ms-2"></i>
                             </a>
                             <div class="mc-seats-counter mt-3">
                                 <span class="mc-pulse-dot"><span class="ping"></span><span class="dot"></span></span>
@@ -251,7 +249,7 @@
                 <h2 class="fw-bold fs-3 text-dark mb-2">{{ $benefitsTitle }}</h2>
                 <span class="d-block mx-auto mb-4" style="width: 70px; height: 3px; background: #fdcc0d; border-radius: 10px;"></span>
 
-                <div class="row g-3">
+                <div class="row g-3 justify-content-center">
                     @php
                         $benefits = [];
                         if(!empty($mcSettings['benefits_list']) && is_array($mcSettings['benefits_list'])) {
@@ -317,7 +315,7 @@
                     </p>
 
                     <div class="text-center">
-                        <a href="#register" class="mc-red-badge-btn">
+                        <a href="#register" class="template-btn">
                             {{ $giftCtaText }}
                         </a>
                         <div class="mc-seats-counter mt-3">
@@ -506,7 +504,7 @@
             ========================================================== --}}
             @if(!auth()->check() || auth()->user()->user_type == 'student')
                 @if(!$is_enrolled)
-                    <div id="register" class="mc-form-wrapper">
+                    <div id="register" class="mc-form-wrapper user-form">
                         <h2 class="text-center fw-bold fs-3 text-dark mb-2">
                             {!! $orderFormTitle !!}
                         </h2>
@@ -520,18 +518,33 @@
                             <input type="hidden" name="quantity" value="1">
 
                             <div class="mb-3">
-                                <label class="fw-semibold text-dark mb-1">{{ $nameLabel }} <span class="text-danger">*</span></label>
-                                <input type="text" name="name" class="mc-form-input" placeholder="{{ $namePlaceholder }}" required>
+                                <label class="form-label fw-semibold text-dark mb-1">{{ $nameLabel }} <span class="text-danger">*</span></label>
+                                <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" placeholder="{{ $namePlaceholder }}" required>
+                                @error('name')
+                                    <span class="invalid-feedback d-block text-danger small mt-1" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
 
                             <div class="mb-3">
-                                <label class="fw-semibold text-dark mb-1">{{ $phoneLabel }} <span class="text-danger">*</span></label>
-                                <input type="tel" name="phone" class="mc-form-input" placeholder="{{ $phonePlaceholder }}" required>
+                                <label class="form-label fw-semibold text-dark mb-1">{{ $phoneLabel }} <span class="text-danger">*</span></label>
+                                <input type="tel" name="phone" class="form-control @error('phone') is-invalid @enderror" value="{{ old('phone') }}" placeholder="{{ $phonePlaceholder }}" required>
+                                @error('phone')
+                                    <span class="invalid-feedback d-block text-danger small mt-1" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
 
                             <div class="mb-3">
-                                <label class="fw-semibold text-dark mb-1">{{ $emailLabel }} <span class="text-danger">*</span></label>
-                                <input type="email" name="email" class="mc-form-input" placeholder="{{ $emailPlaceholder }}" required>
+                                <label class="form-label fw-semibold text-dark mb-1">{{ $emailLabel }} <span class="text-danger">*</span></label>
+                                <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" placeholder="{{ $emailPlaceholder }}" required>
+                                @error('email')
+                                    <span class="invalid-feedback d-block text-danger small mt-1" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
 
                             <div class="mc-breakdown-card border-0 bg-white p-3 mb-4">
@@ -552,7 +565,7 @@
                                 {{ $privacyNotice }}
                             </p>
 
-                            <button type="submit" class="mc-btn-primary-cta w-100 py-3 border-0">
+                            <button type="submit" class="template-btn w-100">
                                 {{ $payNowBtnText }} <i class="fas fa-lock ms-2"></i>
                             </button>
                         </form>
@@ -564,55 +577,50 @@
                  11. FAQ ACCORDION SECTION (100% Admin Sync)
                  Field: $faqs (From Admin Course Edit -> FAQ tab)
             ========================================================== --}}
-            @if(setting('hide_faq_from_course_details') != '1')
+            @php
+                $displayFaqs = [];
+
+                // 1. Primary: Official Course FAQs ($faqs table)
+                if (!empty($faqs) && count($faqs) > 0) {
+                    foreach ($faqs as $f) {
+                        $displayFaqs[] = (object)[
+                            'question' => $f->question,
+                            'answer'   => $f->answer
+                        ];
+                    }
+                }
+
+                // 2. Secondary: mcSettings custom faq_list array
+                if (empty($displayFaqs) && !empty($mcSettings['faq_list']) && is_array($mcSettings['faq_list'])) {
+                    foreach ($mcSettings['faq_list'] as $item) {
+                        if (!empty($item['question']) || !empty($item['answer'])) {
+                            $displayFaqs[] = (object)[
+                                'question' => $item['question'] ?? '',
+                                'answer'   => $item['answer'] ?? ''
+                            ];
+                        }
+                    }
+                }
+
+                // 3. Tertiary: mcSettings faq_items pipe-separated text
+                if (empty($displayFaqs) && !empty($mcSettings['faq_items'])) {
+                    $lines = array_filter(array_map('trim', explode("\n", $mcSettings['faq_items'])));
+                    foreach ($lines as $line) {
+                        $parts = explode('|', $line);
+                        if (isset($parts[0]) && isset($parts[1])) {
+                            $displayFaqs[] = (object)[
+                                'question' => trim($parts[0]),
+                                'answer'   => trim($parts[1])
+                            ];
+                        }
+                    }
+                }
+            @endphp
+
+            @if(setting('hide_faq_from_course_details') != '1' && count($displayFaqs) > 0)
                 <div class="mb-5">
                     <h2 class="text-center fw-bold fs-3 text-dark mb-2">{{ $faqTitle }}</h2>
                     <span class="d-block mx-auto mb-4" style="width: 70px; height: 3px; background: #fdcc0d; border-radius: 10px;"></span>
-
-                    @php
-                        $displayFaqs = [];
-
-                        if (!empty($mcSettings['faq_list']) && is_array($mcSettings['faq_list'])) {
-                            foreach ($mcSettings['faq_list'] as $item) {
-                                if (!empty($item['question']) || !empty($item['answer'])) {
-                                    $displayFaqs[] = (object)[
-                                        'question' => $item['question'] ?? '',
-                                        'answer'   => $item['answer'] ?? ''
-                                    ];
-                                }
-                            }
-                        }
-
-                        if (empty($displayFaqs) && !empty($mcSettings['faq_items'])) {
-                            $lines = array_filter(array_map('trim', explode("\n", $mcSettings['faq_items'])));
-                            foreach ($lines as $line) {
-                                $parts = explode('|', $line);
-                                if (isset($parts[0]) && isset($parts[1])) {
-                                    $displayFaqs[] = (object)[
-                                        'question' => trim($parts[0]),
-                                        'answer'   => trim($parts[1])
-                                    ];
-                                }
-                            }
-                        }
-                        if (empty($displayFaqs) && count($faqs) > 0) {
-                            foreach ($faqs as $f) {
-                                $displayFaqs[] = (object)[
-                                    'question' => $f->question,
-                                    'answer' => $f->answer
-                                ];
-                            }
-                        }
-                        if (empty($displayFaqs)) {
-                            $displayFaqs = [
-                                (object)['question' => 'লাইভ ক্লাসে কিভাবে যুক্ত হবো?', 'answer' => 'আপনি পেমেন্ট করার পর আপনাকে আমাদের একটা প্রাইভেট গ্রুপে জয়েন করানো হবে, এবং যেদিন লাইভ ক্লাসগুলো হবে সেদিন আপনাকে জুমের লিংক শেয়ার করা হবে'],
-                                (object)['question' => 'লাইভ ক্লাসগুলো কত ঘন্টার হবে?', 'answer' => 'এইটা সঠিক ভাবে বলা যাচ্ছে না, যে টাইম দেয়া আছে ঠিক সেই সময়েই শুরু হবে কিন্তু শেষ হবে আপনাদের ইচ্ছায়। যতক্ষণ আপনাদের প্রয়োজন আমি লাইভে থাকবো ইনশাআল্লাহ্'],
-                                (object)['question' => 'মাষ্টার ক্লাসটিতে ডিস্কাউন্ট দেয়া যাবে না?', 'answer' => 'বর্তমানে বিশাল ডিস্কাউন্ট দেয়া আছে তবে প্রতিনিয়ত প্রোগ্রামটির মূল্য কিছু কিছু করে বাড়ানো হবে। তাই যত দ্রুত যুক্ত হবেন তত বেশি আপনারই লাভ।'],
-                                (object)['question' => 'লাইভ ক্লাসের কি কোন রেকর্ড দেয়া হবে?', 'answer' => 'এখনো পর্যন্ত আমরা লাইভ ক্লাসের রেকর্ড দেয়ার কথা চিন্তা করছি না, তবে ভবিষ্যতে প্রয়োজন ভেদে আমরা রেকর্ড ভার্সন দেয়ার কথা চিন্তা করে দেখবো। তবে যারা সত্যিকার অর্থেই সিরিয়াস তারা লাইভ ক্লাসে জয়েন করবেই।'],
-                                (object)['question' => 'আপনাদের নেক্সট লাইভ মাষ্টারক্লাস কবে হবে', 'answer' => 'আমরা আপাতত আর লাইভ মাষ্টারক্লাস করানো কোন প্ল্যান রাখছি না, এইবারই লাস্ট। তাই সময় ম্যানেজ করে এইবারই যুক্ত হোন, যত দেরি করবেন শিখতে তত পিছিয়ে পড়বেন'],
-                            ];
-                        }
-                    @endphp
 
                     <div class="accordion mc-faq-accordion accordion-flush mt-4" id="faqAccordion">
                         @foreach($displayFaqs as $key => $faq)
@@ -643,16 +651,14 @@
                     @if(!auth()->check() || auth()->user()->user_type == 'student')
                         @if(!$is_enrolled)
                             <div class="text-center mt-5">
-                                <a href="#register" class="mc-dual-btn">
-                                    <span class="mc-dual-left">{{ $dualCtaLeft }}</span>
-                                    <span class="mc-dual-right">
-                                        @if($course->is_discountable == 1)
-                                            {{ get_price($course->discount_amount, userCurrency()) }}
-                                        @else
-                                            {{ get_price($course->price, userCurrency()) }}
-                                        @endif
-                                        <i class="fas fa-arrow-right ms-1"></i>
-                                    </span>
+                                <a href="#register" class="template-btn">
+                                    {{ $dualCtaLeft }} - 
+                                    @if($course->is_discountable == 1)
+                                        {{ get_price($course->discount_amount, userCurrency()) }}
+                                    @else
+                                        {{ get_price($course->price, userCurrency()) }}
+                                    @endif
+                                    <i class="fas fa-arrow-right ms-2"></i>
                                 </a>
                                 <div class="mc-seats-counter mt-3">
                                     <span class="mc-pulse-dot"><span class="ping"></span><span class="dot"></span></span>
@@ -714,7 +720,7 @@
                                     <input type="hidden" name="type" value="course">
                                     <input type="hidden" name="rating" class="give_rating">
                                 </div>
-                                <button type="submit" class="mc-btn-primary-cta d-inline-block w-auto px-4 py-2 fs-6">
+                                <button type="submit" class="template-btn">
                                     {{ __('post_review') }}
                                 </button>
                             </form>
@@ -730,12 +736,12 @@
                         
                         @if($reviews->nextPageUrl())
                             <div class="less-more mt-4 text-center">
-                                <button class="btn btn-outline-primary rounded-pill px-4 less-more-btn" 
+                                <button class="template-btn bordered-btn less-more-btn" 
                                         data-page="{{ $reviews->currentPage() }}" 
                                         data-url="{{ route('load.reviews') }}">
                                     {{ __('see_more') }}
                                 </button>
-                                @include('components.frontend_loading_btn', ['class' => 'btn'])
+                                @include('components.frontend_loading_btn', ['class' => 'template-btn'])
                             </div>
                         @endif
                     @endif
@@ -772,7 +778,7 @@
                 
                 @if(!$related_courses->nextPageUrl())
                     <div class="text-center mt-4">
-                        <a class="btn btn-outline-success rounded-pill px-4" href="{{ route('courses', ['category_ids' => $course->category_id]) }}">
+                        <a class="template-btn bordered-btn" href="{{ route('courses', ['category_ids' => $course->category_id]) }}">
                             {{ __('see_more') }}
                         </a>
                     </div>

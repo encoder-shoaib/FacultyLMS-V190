@@ -227,7 +227,6 @@
                         @else
                             <li class="login-btn">
                                 <a href="{{ route('register') }}" class="template-btn get-access-btn">
-                                    <i class="bx bx-rocket"></i>
                                     <span>Get Access</span>
                                 </a>
                             </li>

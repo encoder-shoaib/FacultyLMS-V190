@@ -1126,18 +1126,24 @@ trait ImageTrait
         if ($image && is_file_exists($image->original_file, $image->storage)) {
             $extension = $image->extension;
             $image_size = 'image_' . $width . 'x' . $height;
-            if (!array_key_exists($image_size, $image->image_variants) || !file_exists($image->image_variants[$image_size])) {
+            $variants = is_array($image->image_variants) ? $image->image_variants : [];
+            if (!array_key_exists($image_size, $variants) || !file_exists(public_path($variants[$image_size]))) {
                 $directory = 'images/';
                 $size = date('YmdHis') . $image_size . '-' . rand(1, 500) . '.' . $extension;
                 $url = $directory . $size;
+                $savePath = public_path($url);
+                if (!file_exists(public_path('images'))) {
+                    @mkdir(public_path('images'), 0777, true);
+                }
+
                 if ($image->storage == 'local') {
-                    Image::make(public_path($image->original_file), $image->storage)->resize(
+                    Image::make(public_path($image->original_file))->resize(
                         $width,
                         $height,
                         function ($constraint) {
                             $constraint->aspectRatio();
                         }
-                    )->save(isLocalhost() . $url, $this->getEncodePercentage());
+                    )->save($savePath, $this->getEncodePercentage());
                 } elseif ($image->storage == 'aws_s3') {
                     Image::make(get_media($image->original_file, $image->storage))->resize(
                         $width,
@@ -1145,7 +1151,7 @@ trait ImageTrait
                         function ($constraint) {
                             $constraint->aspectRatio();
                         }
-                    )->save(isLocalhost() . $url, $this->getEncodePercentage());
+                    )->save($savePath, $this->getEncodePercentage());
 
                     $content_type = ['visibility' => 'public', 'ContentType' => 'image/' . $image->extension];
                     $this->uploadFileToS3($url, $content_type);
@@ -1157,13 +1163,13 @@ trait ImageTrait
                         function ($constraint) {
                             $constraint->aspectRatio();
                         }
-                    )->save(isLocalhost() . $url, $this->getEncodePercentage());
+                    )->save($savePath, $this->getEncodePercentage());
 
                     $content_type = ['visibility' => 'public', 'ContentType' => 'image/' . $image->extension];
                     $this->uploadFileToWasabi($url, $content_type);
                     $this->deleteFile($url, 'local');
                 }
-                $image_variants = $image->image_variants;
+                $image_variants = is_array($image->image_variants) ? $image->image_variants : [];
                 $image_variants[$image_size] = $url;
                 $image->image_variants = $image_variants;
                 $image->save();
