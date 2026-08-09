@@ -206,9 +206,7 @@ class CourseController extends Controller
             return response()->json($data);
         }
         try {
-            $this->course->update([
-                'deleted_at' => now(),
-            ], $id);
+            $this->course->destroy($id);
 
             $data = [
                 'status'  => 'success',

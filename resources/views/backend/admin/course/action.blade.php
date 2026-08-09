@@ -1,10 +1,14 @@
 <ul class="d-flex gap-30 justify-content-end align-items-center">
     @if(hasPermission('courses.edit'))
         <li>
-            <a href="{{ route('courses.edit', $course->id) }}"><i class="las la-edit"></i></a>
+            <a href="{{ route('courses.edit', $course->id) }}" title="{{ __('edit') }}"><i class="las la-edit"></i></a>
         </li>
     @endif
-
+    @if(hasPermission('courses.destroy'))
+        <li>
+            <a href="javascript:void(0)" onclick="delete_row('{{ route('courses.destroy', $course->id) }}', {{ $course->id }})" title="{{ __('delete') }}"><i class="las la-trash-alt text-danger"></i></a>
+        </li>
+    @endif
 
     <div class="dropdown">
         <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -30,7 +34,11 @@
                 <li><a class="dropdown-item"
                        href="{{ route('courses.edit',[$course->id,'tab'=>'faq']) }}">{{ __('faq') }}</a></li>
             @endif
-            {{--            <li><a class="dropdown-item" href="#">{{ __('create_join_link') }}</a></li>--}}
+            @if(hasPermission('courses.destroy'))
+                <li>
+                    <a class="dropdown-item text-danger" href="javascript:void(0)" onclick="delete_row('{{ route('courses.destroy', $course->id) }}', {{ $course->id }})"><i class="las la-trash-alt me-2"></i>{{ __('delete') }}</a>
+                </li>
+            @endif
         </ul>
     </div>
 </ul>

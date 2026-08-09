@@ -208,13 +208,15 @@ class CourseRepository
     public function destroy($id)
     {
         $course = Course::findOrfail($id);
-        $course->category->decrement('total_courses');
+        if ($course->category) {
+            $course->category->decrement('total_courses');
+        }
 
         if ($course->video_source == 'upload' && $course->video) {
             $this->deleteFile($course->video);
         }
 
-        return $course->delete($id);
+        return $course->delete();
     }
 
     public function updateProgress($request): bool

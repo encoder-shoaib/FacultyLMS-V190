@@ -1,6 +1,9 @@
 <ul class="d-flex gap-30 justify-content-end align-items-center">
     <li>
-        <a href="{{ route('instructor.courses.edit', $course->id) }}"><i class="las la-edit"></i></a>
+        <a href="{{ route('instructor.courses.edit', $course->id) }}" title="{{ __('edit') }}"><i class="las la-edit"></i></a>
+    </li>
+    <li>
+        <a href="javascript:void(0)" onclick="delete_row('{{ route('instructor.courses.destroy', $course->id) }}', {{ $course->id }})" title="{{ __('delete') }}"><i class="las la-trash-alt text-danger"></i></a>
     </li>
 
     <div class="dropdown">
@@ -13,6 +16,7 @@
             <li><a class="dropdown-item" href="{{ route('instructor.courses.edit',[$course->id,'tab'=> 'curriculum']) }}">{{ __('curriculum') }}</a></li>
             <li><a class="dropdown-item" href="{{ route('instructor.courses.edit',[$course->id,'tab'=>'assignment']) }}">{{ __('assignment') }}</a></li>
             <li><a class="dropdown-item" href="{{ route('instructor.courses.edit',[$course->id,'tab'=>'faq']) }}">{{ __('faq') }}</a></li>
+            <li><a class="dropdown-item text-danger" href="javascript:void(0)" onclick="delete_row('{{ route('instructor.courses.destroy', $course->id) }}', {{ $course->id }})"><i class="las la-trash-alt me-2"></i>{{ __('delete') }}</a></li>
         </ul>
     </div>
 </ul>
